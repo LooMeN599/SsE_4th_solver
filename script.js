@@ -85,7 +85,13 @@ function updateSelection() {
         document.getElementById("resultD").innerText = resultDText;
     }
     
-    checkDuplicates();
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されているかどうかをチェック
+    var hasAtLeastOneSelection = selectedNumberA !== null || selectedNumberB !== null || selectedNumberC !== null;
+
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されている場合のみ、重複チェックを実行
+    if (hasAtLeastOneSelection) {
+        checkDuplicates(); // 裏A、裏B、裏Cのいずれかのボタンが選択されている場合にのみ重複チェックを実行
+    }
 }
 
 function checkDuplicates() {
