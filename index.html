@@ -148,7 +148,7 @@
         const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
 
         let resultText = '';
-        if (neededNumbers.length > 0 || unneededNumbers.length > 0) {
+        if (neededNumbers.length > 0) {
             resultText += `${unneededNumbers.join('と')}が不要、${neededNumbers.join('と')}が必要`;
         }
 
