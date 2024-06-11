@@ -103,7 +103,6 @@
         const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
         resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
     }
-
     function updateFilteredResults() {
         updateResultForSlot('A', 'result-D2', 'num-set-button-D');
         updateResultForSlot('B', 'result-E2', 'num-set-button-E');
@@ -149,10 +148,9 @@
 
         let resultText = '';
         if (neededNumbers.length > 0) {
-            resultText += `${neededNumbers.join('と')}が必要`;
-        }
-        if (unneededNumbers.length > 0) {
-            resultText += (resultText ? ' 及び ' : '') + `${unneededNumbers.join('と')}が不要`;
+            resultText += `${unneededNumbers.join('と')}が不要、${neededNumbers.join('と')}が必要`;
+        } else {
+            resultText += `${unneededNumbers.join('と')}が不要`;
         }
 
         targetElement.innerText = resultText;
@@ -170,6 +168,7 @@
         document.getElementById('result-E3').innerText = '';
         document.getElementById('result-F3').innerText = '';
     }
+
     </script>
     <style>
         h2 {
