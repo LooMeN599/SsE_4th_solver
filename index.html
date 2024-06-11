@@ -35,23 +35,23 @@
             const slotClass = button.classList[1];
             let resultText = '';
             switch (button.innerText) {
-                case '球体':
-                    resultText = '(0, 0)';
+                case '0a, 0b':
+                    resultText = '(0a, 0b)';
                     break;
-                case '立方体':
-                    resultText = '(4, 4)';
+                case '4a, 4b':
+                    resultText = '(4a, 4b)';
                     break;
-                case '三角錐':
-                    resultText = '(3, 3)';
+                case '3a, 3b':
+                    resultText = '(3a, 3b)';
                     break;
-                case '円柱':
-                    resultText = '(0, 4)';
+                case '0a, 4a':
+                    resultText = '(0a, 4a)';
                     break;
-                case '円錐':
-                    resultText = '(0, 3)';
+                case '0a, 3a':
+                    resultText = '(0a, 3a)';
                     break;
-                case '三角柱':
-                    resultText = '(3, 4)';
+                case '3a, 3a':
+                    resultText = '(3a, 3a)';
                     break;
             }
     
@@ -73,12 +73,12 @@
         // 表スロットの対応を取得する関数
         function getCorrespondingText(buttonText) {
             switch (buttonText) {
-                case '球体': return '(0, 0)';
-                case '立方体': return '(4, 4)';
-                case '三角錐': return '(3, 3)';
-                case '円柱': return '(0, 4)';
-                case '円錐': return '(0, 3)';
-                case '三角柱': return '(3, 4)';
+                case '0a, 0b': return '(0a, 0b)';
+                case '4a, 4b': return '(4a, 4b)';
+                case '3a, 3b': return '(3a, 3b)';
+                case '0a, 4a': return '(0a, 4a)';
+                case '0a, 3a': return '(0a, 3a)';
+                case '3a, 3a': return '(3a, 3a)';
                 default: return '';
             }
         }
@@ -97,7 +97,7 @@
         // 指定されたスロットの結果を更新する関数
         function updateResultForSlot(slotClass, resultId, buttonClass) {
             const resultElement = document.getElementById(resultId);
-            const values = ['3', '4', '0'];
+            const values = ['3a', '4a', '0a'];
     
             const selectedValue = getSelectedValue(slotClass);
             const filteredValues = values.filter(value => value !== selectedValue);
@@ -121,8 +121,8 @@
             }
     
             const [firstLine, secondLine] = lines;
-            const firstNumbers = firstLine.match(/\d/g).map(Number);
-            const secondNumbers = secondLine.match(/\d/g).map(Number);
+            const firstNumbers = firstLine.match(/(\d[a-z])/g);
+            const secondNumbers = secondLine.match(/(\d[a-z])/g);
     
             const neededNumbers = secondNumbers.filter(num => !firstNumbers.includes(num));
             const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
@@ -180,58 +180,58 @@
         <div class="slot">
             <h2>裏A：</h2>
             <div>
-                <button class="num-set-button num-set-button-A">3</button>
-                <button class="num-set-button num-set-button-A">4</button>
-                <button class="num-set-button num-set-button-A">0</button>
+                <button class="num-set-button num-set-button-A">3a</button>
+                <button class="num-set-button num-set-button-A">4a</button>
+                <button class="num-set-button num-set-button-A">0a</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏B：</h2>
             <div>
-                <button class="num-set-button num-set-button-B">3</button>
-                <button class="num-set-button num-set-button-B">4</button>
-                <button class="num-set-button num-set-button-B">0</button>
+                <button class="num-set-button num-set-button-B">3a</button>
+                <button class="num-set-button num-set-button-B">4a</button>
+                <button class="num-set-button num-set-button-B">0a</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏C：</h2>
             <div>
-                <button class="num-set-button num-set-button-C">3</button>
-                <button class="num-set-button num-set-button-C">4</button>
-                <button class="num-set-button num-set-button-C">0</button>
+                <button class="num-set-button num-set-button-C">3a</button>
+                <button class="num-set-button num-set-button-C">4a</button>
+                <button class="num-set-button num-set-button-C">0a</button>
             </div>
         </div>
         <div class="slot">
             <h2>表D1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-D">球体</button>
-                <button class="num-set-button num-set-button-D">立方体</button>
-                <button class="num-set-button num-set-button-D">三角錐</button>
-                <button class="num-set-button num-set-button-D">円柱</button>
-                <button class="num-set-button num-set-button-D">円錐</button>
-                <button class="num-set-button num-set-button-D">三角柱</button>
+                <button class="num-set-button num-set-button-D">0a, 0b</button>
+                <button class="num-set-button num-set-button-D">4a, 4b</button>
+                <button class="num-set-button num-set-button-D">3a, 3b</button>
+                <button class="num-set-button num-set-button-D">0a, 4a</button>
+                <button class="num-set-button num-set-button-D">0a, 3a</button>
+                <button class="num-set-button num-set-button-D">3a, 3a</button>
             </div>
         </div>    
         <div class="slot">
             <h2>表E1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-E">球体</button>
-                <button class="num-set-button num-set-button-E">立方体</button>
-                <button class="num-set-button num-set-button-E">三角錐</button>
-                <button class="num-set-button num-set-button-E">円柱</button>
-                <button class="num-set-button num-set-button-E">円錐</button>
-                <button class="num-set-button num-set-button-E">三角柱</button>
+                <button class="num-set-button num-set-button-E">0a, 0b</button>
+                <button class="num-set-button num-set-button-E">4a, 4b</button>
+                <button class="num-set-button num-set-button-E">3a, 3b</button>
+                <button class="num-set-button num-set-button-E">0a, 4a</button>
+                <button class="num-set-button num-set-button-E">0a, 3a</button>
+                <button class="num-set-button num-set-button-E">3a, 3a</button>
             </div>
         </div>
         <div class="slot">
             <h2>表F1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-F">球体</button>
-                <button class="num-set-button num-set-button-F">立方体</button>
-                <button class="num-set-button num-set-button-F">三角錐</button>
-                <button class="num-set-button num-set-button-F">円柱</button>
-                <button class="num-set-button num-set-button-F">円錐</button>
-                <button class="num-set-button num-set-button-F">三角柱</button>
+                <button class="num-set-button num-set-button-F">0a, 0b</button>
+                <button class="num-set-button num-set-button-F">4a, 4b</button>
+                <button class="num-set-button num-set-button-F">3a, 3b</button>
+                <button class="num-set-button num-set-button-F">0a, 4a</button>
+                <button class="num-set-button num-set-button-F">0a, 3a</button>
+                <button class="num-set-button num-set-button-F">3a, 3a</button>
             </div>
         </div>
         <div class="slot">
