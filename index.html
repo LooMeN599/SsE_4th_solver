@@ -151,10 +151,12 @@
         const resultF3 = document.getElementById('result-F3').innerText;
 
         // 表D3スロットで「Xが不要」と表示されている文字Xを参照
-        const unwantedX = (resultD3.match(/(\d[a-z])が不要/) || [])[1];
-        
+        const unwantedXMatch = resultD3.match(/(\d[a-z])が不要/);
+        const unwantedX = unwantedXMatch ? normalize(unwantedXMatch[1]) : null;
+
         // 表D3スロットで「Yが必要」と表示されている文字Yを参照
-        const neededY = (resultD3.match(/(\d[a-z])が必要/) || [])[1];
+        const neededYMatch = resultD3.match(/(\d[a-z])が必要/);
+        const neededY = neededYMatch ? normalize(neededYMatch[1]) : null;
 
         let resultText = '';
         if (unwantedX && neededY) {
@@ -166,6 +168,14 @@
         }
 
         document.getElementById('result-Anatomy').innerText = resultText;
+    }
+
+    // 0aと0bを0に、3aと3bを3に、4aと4bを4に正規化する関数
+    function normalize(value) {
+        if (value === '0a' || value === '0b') return '0';
+        if (value === '3a' || value === '3b') return '3';
+        if (value === '4a' || value === '4b') return '4';
+        return value;
     }
 
         // 入力をクリアする関数
