@@ -113,57 +113,6 @@
         document.getElementById('result-E2').innerText = '';
         document.getElementById('result-F2').innerText = '';
     }
-    // 入力をクリアする関数
-    function clearSelection() {
-        document.querySelectorAll('.selected').forEach(function(button) {
-            button.classList.remove('selected');
-        });
-        document.getElementById('result-D2').innerText = '';
-        document.getElementById('result-E2').innerText = '';
-        document.getElementById('result-F2').innerText = '';
-    }
-    // 表D3の結果を更新する関数
-    function updateResultD3() {
-        const resultElementD2 = document.getElementById('result-D2').innerText;
-        const resultElementD3 = document.getElementById('result-D3');
-        const [firstResultD2, secondResultD2] = resultElementD2.split('\n');
-        const [firstD2FirstValue, firstD2SecondValue] = firstResultD2.substring(1, firstResultD2.length - 1).split(', ');
-        const [secondD2FirstValue, secondD2SecondValue] = secondResultD2.substring(1, secondResultD2.length - 1).split(', ');
-
-        const resultTextD3 = `(${secondD2FirstValue}, ${secondD2SecondValue})が必要`;
-        resultElementD3.innerText = resultTextD3;
-    }
-
-    // 表E3の結果を更新する関数
-    function updateResultE3() {
-        const resultElementE2 = document.getElementById('result-E2').innerText;
-        const resultElementE3 = document.getElementById('result-E3');
-        const [firstResultE2, secondResultE2] = resultElementE2.split('\n');
-        const [firstE2FirstValue, firstE2SecondValue] = firstResultE2.substring(1, firstResultE2.length - 1).split(', ');
-        const [secondE2FirstValue, secondE2SecondValue] = secondResultE2.substring(1, secondResultE2.length - 1).split(', ');
-
-        const resultTextE3 = `(${secondE2FirstValue}, ${secondE2SecondValue})が必要`;
-        resultElementE3.innerText = resultTextE3;
-    }
-
-    // 表F3の結果を更新する関数
-    function updateResultF3() {
-        const resultElementF2 = document.getElementById('result-F2').innerText;
-        const resultElementF3 = document.getElementById('result-F3');
-        const [firstResultF2, secondResultF2] = resultElementF2.split('\n');
-        const [firstF2FirstValue, firstF2SecondValue] = firstResultF2.substring(1, firstResultF2.length - 1).split(', ');
-        const [secondF2FirstValue, secondF2SecondValue] = secondResultF2.substring(1, secondResultF2.length - 1).split(', ');
-
-        const resultTextF3 = `(${secondF2FirstValue}, ${secondF2SecondValue})が必要`;
-        resultElementF3.innerText = resultTextF3;
-    }
-
-    // 表D2, 表E2, 表F2 の結果変更後に、それぞれの関数を呼び出す
-    function updateFilteredResults() {
-        updateResultD3();
-        updateResultE3();
-        updateResultF3();
-    }
 
     </script>
     <style>
@@ -262,18 +211,7 @@
             <h2>表F2：</h2>
             <div id="result-F2"></div>
         </div>
-        <div class="slot">
-            <h2>表D3：</h2>
-            <div id="result-D3"></div>
-        </div>
-        <div class="slot">
-            <h2>表E3：</h2>
-            <div id="result-E3"></div>
-        </div>
-        <div class="slot">
-            <h2>表F3：</h2>
-            <div id="result-F3"></div>
-        </div>
+
         <button onclick="clearSelection()">入力クリア</button>
     </div>
 </body>
