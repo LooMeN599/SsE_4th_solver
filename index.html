@@ -201,6 +201,51 @@
         return value;
     }
     
+        // E4スロットを更新する関数
+        function updateResultForE4() {
+        const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonE1) return;
+
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
+        firstPart = normalize(firstPart);
+        secondPart = normalize(secondPart);
+
+        const match = anatomyResult.match(/Dで(\d)を解剖し、Eで(\d)を解剖/);
+
+        if (match) {
+            const unwantedX = match[1];
+            const neededY = match[2];
+
+            if (firstPart === neededY) firstPart = unwantedX;
+            else if (secondPart === neededY) secondPart = unwantedX;
+        }
+
+        document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
+    }
+
+    // F4スロットを更新する関数
+    function updateResultForF4() {
+        const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonF1) return;
+
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
+        firstPart = normalize(firstPart);
+        secondPart = normalize(secondPart);
+
+        const match = anatomyResult.match(/Dで(\d)を解剖し、Fで(\d)を解剖/);
+
+        if (match) {
+            const unwantedX = match[1];
+            const neededY = match[2];
+
+            if (firstPart === neededY) firstPart = unwantedX;
+            else if (secondPart === neededY) secondPart = unwantedX;
+        }
+
+        document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
+    }
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
