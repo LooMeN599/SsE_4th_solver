@@ -170,47 +170,6 @@
 
             document.getElementById('result-Anatomy').innerText = resultText;
         }
-        // D4スロットを更新する関数
-        function updateResultForD4() {
-            const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
-            if (!selectedButtonD1) return;
-
-            let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
-
-            // 正しい組み合わせを返すように修正
-            if (firstPart === '0b') firstPart = '4a';
-            else if (secondPart === '0b') secondPart = '4a';
-
-            document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
-        }
-
-        // E4スロットを更新する関数
-        function updateResultForE4() {
-            const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
-            if (!selectedButtonE1) return;
-
-            let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
-
-            // 正しい組み合わせを返すように修正
-            if (firstPart === '4a') firstPart = '4b';
-            if (secondPart === '4a') secondPart = '4b';
-            if (firstPart === '0a') firstPart = '0b';
-            if (secondPart === '0a') secondPart = '0b';
-
-            document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
-        }
-        // F4スロットを更新する関数
-        function updateResultForF4() {
-            const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
-            if (!selectedButtonF1) return;
-
-            let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
-
-            // 正しい組み合わせを返すように修正
-            // 3aと3bはそのまま
-
-            document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
-        }
     
         // 入力をクリアする関数
         function clearSelection() {
