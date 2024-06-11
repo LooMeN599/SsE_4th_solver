@@ -6,16 +6,19 @@ var selectedShapeD = null;
 function toggleSelectionA(number) {
     selectedNumberA = number;
     updateSelection();
+    checkDuplicates(); // 重複チェックを追加
 }
 
 function toggleSelectionB(number) {
     selectedNumberB = number;
     updateSelection();
+    checkDuplicates(); // 重複チェックを追加
 }
 
 function toggleSelectionC(number) {
     selectedNumberC = number;
     updateSelection();
+    checkDuplicates(); // 重複チェックを追加
 }
 
 function toggleSelectionD(shape) {
