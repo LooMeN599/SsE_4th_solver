@@ -170,24 +170,45 @@
 
             document.getElementById('result-Anatomy').innerText = resultText;
         }
-        // D4スロットを更新する関数
-        function updateResultForD4() {
+        
+    // D4スロットを更新する関数
+    function updateResultForD4() {
         const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
         const anatomyResult = document.getElementById('result-Anatomy').innerText;
         if (!selectedButtonD1) return;
 
         let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
-        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Eで(\d[a-z])を解剖|Dで(\d[a-z])を解剖、Fで(\d[a-z])を解剖/);
+        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、[EF]で(\d[a-z])を解剖/);
 
         if (match) {
-            const unwantedX = match[1] || match[3];
-            const neededY = match[2] || match[4];
+            const unwantedX = match[1];
+            const neededY = match[2];
             
             if (firstPart === unwantedX) firstPart = neededY;
             else if (secondPart === unwantedX) secondPart = neededY;
         }
 
         document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
+    }
+
+    // E4スロットを更新する関数
+    function updateResultForE4() {
+        const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonE1) return;
+
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
+        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Eで(\d[a-z])を解剖/);
+
+        if (match) {
+            const neededY = match[2];
+            const unwantedX = match[1];
+
+            if (firstPart === neededY) firstPart = unwantedX;
+            else if (secondPart === neededY) secondPart = unwantedX;
+        }
+
+        document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
     }
 
         // 入力をクリアする関数
