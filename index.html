@@ -109,9 +109,9 @@
         updateResultForSlot('B', 'result-E2', 'num-set-button-E');
         updateResultForSlot('C', 'result-F2', 'num-set-button-F');
 
-        updateNeededNumbers('result-D2', 'result-D3');
-        updateNeededNumbers('result-E2', 'result-E3');
-        updateNeededNumbers('result-F2', 'result-F3');
+        updateNeededAndUnneededNumbers('result-D2', 'result-D3');
+        updateNeededAndUnneededNumbers('result-E2', 'result-E3');
+        updateNeededAndUnneededNumbers('result-F2', 'result-F3');
     }
 
     // 指定されたスロットの結果を更新する関数
@@ -129,8 +129,8 @@
         resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
     }
 
-    // 表示されている2組の数字を比較して必要な数字を表示する関数
-    function updateNeededNumbers(resultId, targetId) {
+    // 表示されている2組の数字を比較して必要な数字と不要な数字を表示する関数
+    function updateNeededAndUnneededNumbers(resultId, targetId) {
         const resultElement = document.getElementById(resultId).innerText;
         const targetElement = document.getElementById(targetId);
 
@@ -145,11 +145,17 @@
         const secondNumbers = secondLine.match(/\d/g).map(Number);
 
         const neededNumbers = secondNumbers.filter(num => !firstNumbers.includes(num));
+        const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
+
+        let resultText = '';
         if (neededNumbers.length > 0) {
-            targetElement.innerText = `${neededNumbers.join('と')}が必要`;
-        } else {
-            targetElement.innerText = '';
+            resultText += `${neededNumbers.join('と')}が必要`;
         }
+        if (unneededNumbers.length > 0) {
+            resultText += (resultText ? ' 及び ' : '') + `${unneededNumbers.join('と')}が不要`;
+        }
+
+        targetElement.innerText = resultText;
     }
 
     // 入力をクリアする関数
@@ -164,7 +170,6 @@
         document.getElementById('result-E3').innerText = '';
         document.getElementById('result-F3').innerText = '';
     }
-
     </script>
     <style>
         h2 {
