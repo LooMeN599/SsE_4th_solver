@@ -62,17 +62,7 @@
         } else if (slotClass.includes('num-set-button-F')) {
             document.getElementById('result-F2').innerText = resultText;
         }
-    }
-    
-    // 入力をクリアする関数
-    function clearSelection() {
-        document.querySelectorAll('.selected').forEach(function(button) {
-            button.classList.remove('selected');
-        });
-        document.getElementById('result-D2').innerText = '';
-        document.getElementById('result-E2').innerText = '';
-        document.getElementById('result-F2').innerText = '';
-    }
+    }   
     // 裏スロットの値を取得する関数
     function getSelectedValue(slotClass) {
         const selectedButton = document.querySelector(`.num-set-button-${slotClass}.selected`);
@@ -111,40 +101,18 @@
         const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
         
         const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
-        const combinedText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
-        
-        const neededNumber = findNeededNumber(correspondingText, resultText);
-
-        resultElement.innerText = neededNumber ? `${combinedText}\n${neededNumber}が必要` : combinedText;
+        resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
     }
 
-    // 必要な数字を見つける関数
-    function findNeededNumber(correspondingText, resultText) {
-        if (!correspondingText || !resultText) return null;
-
-        const regex = /\((\d), (\d)\)/;
-        const correspondingMatch = correspondingText.match(regex);
-        const resultMatch = resultText.match(regex);
-
-        if (correspondingMatch && resultMatch) {
-            const correspondingSet = new Set([parseInt(correspondingMatch[1]), parseInt(correspondingMatch[2])]);
-            const resultSet = new Set([parseInt(resultMatch[1]), parseInt(resultMatch[2])]);
-
-            for (const num of correspondingSet) {
-                if (!resultSet.has(num)) {
-                    return num;
-                }
-            }
-            for (const num of resultSet) {
-                if (!correspondingSet.has(num)) {
-                    return num;
-                }
-            }
-        }
-
-        return null;
+    // 入力をクリアする関数
+    function clearSelection() {
+        document.querySelectorAll('.selected').forEach(function(button) {
+            button.classList.remove('selected');
+        });
+        document.getElementById('result-D2').innerText = '';
+        document.getElementById('result-E2').innerText = '';
+        document.getElementById('result-F2').innerText = '';
     }
-
     // 入力をクリアする関数
     function clearSelection() {
         document.querySelectorAll('.selected').forEach(function(button) {
