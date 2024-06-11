@@ -17,7 +17,12 @@
 .noduplicate {
     color: black;
 }
-/* すべての要素に行間を追加 */
-body {
-    line-height: 1.5; /* 1.5倍の行間を指定 */
+h2 {
+    font-size: 12px; /* スロット名の文字サイズを指定 */
+}
+
+div {
+    margin-right: 10px; /* 右側の余白を追加 */
+    margin-top: 10px; /* 上側の余白を追加 */
+    margin-bottom: 10px; /* 下側の余白を追加 */
 }
