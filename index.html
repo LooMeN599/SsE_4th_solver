@@ -97,10 +97,14 @@
         // 指定されたスロットの結果を更新する関数
         function updateResultForSlot(slotClass, resultId, buttonClass) {
             const resultElement = document.getElementById(resultId);
-            const values = ['3a', '4a', '0a'];
+            const values = {
+                '▲': '3a',
+                '■': '4a',
+                '●': '0a'
+            };
     
             const selectedValue = getSelectedValue(slotClass);
-            const filteredValues = values.filter(value => value !== selectedValue);
+            const filteredValues = Object.values(values).filter(value => value !== values[selectedValue]);
     
             const correspondingButton = document.querySelector(`.${buttonClass}.selected`);
             const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
@@ -151,6 +155,7 @@
     
     
     
+    
     <style>
         h2 {
             font-size: 18px;
@@ -174,6 +179,7 @@
         margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
     }
     </style>
+
 </head>
 <body>
     <h1>4th encounter solver</h1>
@@ -181,25 +187,25 @@
         <div class="slot">
             <h2>裏A：</h2>
             <div>
-                <button class="num-set-button num-set-button-A">3a</button>
-                <button class="num-set-button num-set-button-A">4a</button>
-                <button class="num-set-button num-set-button-A">0a</button>
+                <button class="num-set-button num-set-button-A">▲</button>
+                <button class="num-set-button num-set-button-A">■</button>
+                <button class="num-set-button num-set-button-A">●</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏B：</h2>
             <div>
-                <button class="num-set-button num-set-button-B">3a</button>
-                <button class="num-set-button num-set-button-B">4a</button>
-                <button class="num-set-button num-set-button-B">0a</button>
+                <button class="num-set-button num-set-button-B">▲</button>
+                <button class="num-set-button num-set-button-B">■</button>
+                <button class="num-set-button num-set-button-B">●</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏C：</h2>
             <div>
-                <button class="num-set-button num-set-button-C">3a</button>
-                <button class="num-set-button num-set-button-C">4a</button>
-                <button class="num-set-button num-set-button-C">0a</button>
+                <button class="num-set-button num-set-button-C">▲</button>
+                <button class="num-set-button num-set-button-C">■</button>
+                <button class="num-set-button num-set-button-C">●</button>
             </div>
         </div>
         <div class="slot">
