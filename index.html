@@ -79,23 +79,49 @@
         return selectedButton ? selectedButton.innerText : null;
     }
 
+    // 表スロットの対応を取得する関数
+    function getCorrespondingText(buttonText) {
+        switch(buttonText) {
+            case '球体': return '(0, 0)';
+            case '立方体': return '(4, 4)';
+            case '三角錐': return '(3, 3)';
+            case '円柱': return '(0, 4)';
+            case '円錐': return '(0, 3)';
+            case '三角柱': return '(3, 4)';
+            default: return '';
+        }
+    }
+
     // フィルタリングされた結果を更新する関数
     function updateFilteredResults() {
-        updateResultForSlot('A', 'result-D2');
-        updateResultForSlot('B', 'result-E2');
-        updateResultForSlot('C', 'result-F2');
+        updateResultForSlot('A', 'result-D2', 'num-set-button-D');
+        updateResultForSlot('B', 'result-E2', 'num-set-button-E');
+        updateResultForSlot('C', 'result-F2', 'num-set-button-F');
     }
 
     // 指定されたスロットの結果を更新する関数
-    function updateResultForSlot(slotClass, resultId) {
+    function updateResultForSlot(slotClass, resultId, buttonClass) {
         const resultElement = document.getElementById(resultId);
         const values = ['3', '4', '0'];
         
         const selectedValue = getSelectedValue(slotClass);
         const filteredValues = values.filter(value => value !== selectedValue);
         
+        const correspondingButton = document.querySelector(`.${buttonClass}.selected`);
+        const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
+        
         const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
-        resultElement.innerText = resultText;
+        resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
+    }
+
+    // 入力をクリアする関数
+    function clearSelection() {
+        document.querySelectorAll('.selected').forEach(function(button) {
+            button.classList.remove('selected');
+        });
+        document.getElementById('result-D2').innerText = '';
+        document.getElementById('result-E2').innerText = '';
+        document.getElementById('result-F2').innerText = '';
     }
     </script>
     <style>
