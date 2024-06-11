@@ -103,6 +103,7 @@
         const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
         resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
     }
+
     function updateFilteredResults() {
         updateResultForSlot('A', 'result-D2', 'num-set-button-D');
         updateResultForSlot('B', 'result-E2', 'num-set-button-E');
@@ -147,10 +148,8 @@
         const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
 
         let resultText = '';
-        if (neededNumbers.length > 0) {
+        if (neededNumbers.length > 0 || unneededNumbers.length > 0) {
             resultText += `${unneededNumbers.join('と')}が不要、${neededNumbers.join('と')}が必要`;
-        } else {
-            resultText += `${unneededNumbers.join('と')}が不要`;
         }
 
         targetElement.innerText = resultText;
