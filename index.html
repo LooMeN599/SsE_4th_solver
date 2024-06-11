@@ -120,25 +120,25 @@
     <h1>4th encounter solver</h1>
     <div>
         <div>
-            <h2>裏A：</h2>
+            <h2 style="display: inline;">裏A：</h2> <!-- 改行しないように修正 -->
             <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
             <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
             <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
         </div>
         <div>
-            <h2>裏B：</h2>
+            <h2 style="display: inline;">裏B：</h2> <!-- 改行しないように修正 -->
             <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
             <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
             <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
         </div>
         <div>
-            <h2>裏C：</h2>
+            <h2 style="display: inline;">裏C：</h2> <!-- 改行しないように修正 -->
             <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
             <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
             <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
         </div>
+        <div id="result"></div> <!-- 入力クリアボタンより上に結果表示を移動 -->
         <button onclick="clearSelection()">入力クリア</button> <!-- 入力クリアボタンを追加 -->
     </div>
-    <div id="result"></div>
 </body>
 </html>
