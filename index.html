@@ -149,11 +149,11 @@
             const resultD3 = document.getElementById('result-D3').innerText;
             const resultE3 = document.getElementById('result-E3').innerText;
             const resultF3 = document.getElementById('result-F3').innerText;
-    
-            const unwantedD3 = resultD3.match(/(\d[a-z])/g) || [];
-            const unwantedE3 = resultE3.match(/(\d[a-z])/g) || [];
-            const unwantedF3 = resultF3.match(/(\d[a-z])/g) || [];
-    
+
+            const unwantedD3 = resultD3.match(/\d[a-z]/g) || [];
+            const unwantedE3 = resultE3.match(/\d[a-z]/g) || [];
+            const unwantedF3 = resultF3.match(/\d[a-z]/g) || [];
+
             let resultText = '';
             if (unwantedD3.length > 0) {
                 resultText += `Dで${unwantedD3.join('と')}を解剖`;
@@ -165,10 +165,9 @@
                 if (resultText) resultText += '、';
                 resultText += `Fで${unwantedF3.join('と')}を解剖`;
             }
-    
+
             document.getElementById('result-Anatomy').innerText = resultText;
         }
-    
         // D4スロットを更新する関数
         function updateResultForD4() {
             const resultD2 = document.getElementById('result-D2').innerText;
