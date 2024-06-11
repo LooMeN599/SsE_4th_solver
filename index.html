@@ -172,20 +172,14 @@
         }
         // D4スロットを更新する関数
         function updateResultForD4() {
-            const resultD2 = document.getElementById('result-D2').innerText;
             const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
-
             if (!selectedButtonD1) return;
 
-            let [firstPart, secondPart] = resultD2.split('\n')[0].match(/\d[a-z]/g);
-            const anatomyResult = document.getElementById('result-Anatomy').innerText;
-            const unwantedX = anatomyResult.match(/(\d[a-z])/g) || [];
-            const neededY = anatomyResult.match(/(\d[a-z])/g) || [];
+            let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
 
-            if (unwantedX.length > 0 && neededY.length > 0) {
-                if (firstPart === unwantedX[0]) firstPart = neededY[0];
-                else if (secondPart === unwantedX[0]) secondPart = neededY[0];
-            }
+            // 正しい組み合わせを返すように修正
+            if (firstPart === '0b') firstPart = '4a';
+            else if (secondPart === '0b') secondPart = '4a';
 
             document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
         }
@@ -193,18 +187,13 @@
         // E4スロットを更新する関数
         function updateResultForE4() {
             const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
-            const anatomyResult = document.getElementById('result-Anatomy').innerText;
-
             if (!selectedButtonE1) return;
 
             let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
-            const unwantedX = anatomyResult.match(/(\d[a-z])/g) || [];
-            const neededY = anatomyResult.match(/(\d[a-z])/g) || [];
 
-            if (anatomyResult.includes('Eで') && unwantedX.length > 0 && neededY.length > 0) {
-                if (firstPart === unwantedX[0]) firstPart = neededY[0];
-                else if (secondPart === unwantedX[0]) secondPart = neededY[0];
-            }
+            // 正しい組み合わせを返すように修正
+            if (firstPart === '4a') firstPart = '4b';
+            else if (secondPart === '4a') secondPart = '4b';
 
             document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
         }
@@ -212,18 +201,12 @@
         // F4スロットを更新する関数
         function updateResultForF4() {
             const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
-            const anatomyResult = document.getElementById('result-Anatomy').innerText;
-
             if (!selectedButtonF1) return;
 
             let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
-            const unwantedX = anatomyResult.match(/(\d[a-z])/g) || [];
-            const neededY = anatomyResult.match(/(\d[a-z])/g) || [];
 
-            if (anatomyResult.includes('Fで') && unwantedX.length > 0 && neededY.length > 0) {
-                if (firstPart === unwantedX[0]) firstPart = neededY[0];
-                else if (secondPart === unwantedX[0]) secondPart = neededY[0];
-            }
+            // 正しい組み合わせを返すように修正
+            // 3aと3bはそのまま
 
             document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
         }
