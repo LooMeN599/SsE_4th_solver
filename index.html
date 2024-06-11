@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4th encounter solver</title>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // ボタンのクリック時の処理を追加
-            document.querySelectorAll('.num-set-button').forEach(function(button) {
-                button.addEventListener('click', function() {
-                    toggleSelection(button);
-                    updateCorrespondingSlot(button);
-                    updateFilteredResults();
-                });
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.num-set-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                toggleSelection(button);
+                updateCorrespondingSlot(button);
+                updateFilteredResults();
+                updatePostAnatomySlot();
             });
         });
+    });
     
         // ボタンの選択状態を切り替える関数
         function toggleSelection(button) {
@@ -200,7 +200,7 @@
         if (value === '4a' || value === '4b') return '4';
         return value;
     }
-    
+
         // E4スロットを更新する関数
         function updateResultForE4() {
         const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
@@ -246,6 +246,41 @@
 
         document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
     }
+
+    // 解剖1後判定スロットを更新する関数
+    function updatePostAnatomySlot() {
+        const resultD4 = document.getElementById('result-D4').innerText;
+        const resultE4 = document.getElementById('result-E4').innerText;
+        const resultF4 = document.getElementById('result-F4').innerText;
+        
+        const resultD2 = document.getElementById('result-D2').innerText.split('\n')[1];
+        const resultE2 = document.getElementById('result-E2').innerText.split('\n')[1];
+        const resultF2 = document.getElementById('result-F2').innerText.split('\n')[1];
+
+        const statusD = checkCompletion(resultD4, resultD2, '表D');
+        const statusE = checkCompletion(resultE4, resultE2, '表E');
+        const statusF = checkCompletion(resultF4, resultF2, '表F');
+
+        document.getElementById('result-PostAnatomy').innerText = `${statusD}\n${statusE}\n${statusF}`;
+    }
+
+    // 完成判定を行う関数
+    function checkCompletion(result4, result2, label) {
+        const normalize = (value) => value.replace(/[ab]/g, '');
+
+        const [first4, second4] = result4.match(/\d[a-z]/g).map(normalize);
+        const [first2, second2] = result2.match(/\d[a-z]/g).map(normalize);
+
+        const set4 = new Set([first4, second4]);
+        const set2 = new Set([first2, second2]);
+
+        if (set4.size === set2.size && [...set4].every(value => set2.has(value))) {
+            return `${label}：完成`;
+        } else {
+            return `${label}：${result4}`;
+        }
+    }
+
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
@@ -388,6 +423,10 @@
         <div class="slot">
             <h2>表F4：</h2>
             <div id="result-F4"></div>
+        </div>
+        <div class="slot">
+            <h2>解剖1後判定：</h2>
+            <div id="result-PostAnatomy"></div>
         </div>
         <button onclick="clearSelection()">入力クリア</button>
     </div>
