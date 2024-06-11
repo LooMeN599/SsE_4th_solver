@@ -120,6 +120,8 @@
 
     // 必要な数字を見つける関数
     function findNeededNumber(correspondingText, resultText) {
+        if (!correspondingText || !resultText) return null;
+
         const regex = /\((\d), (\d)\)/;
         const correspondingMatch = correspondingText.match(regex);
         const resultMatch = resultText.match(regex);
