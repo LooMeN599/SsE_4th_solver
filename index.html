@@ -19,28 +19,32 @@
         }
     </style>
     <script>
-        function toggleSelection(buttonId) {
+        var selectedNumbers = [];
+
+        function toggleSelection(buttonId, number) {
             var selectedButton = document.getElementById(buttonId);
-            var allButtons = document.querySelectorAll('.num-set-button');
-            allButtons.forEach(function(button) {
-                button.classList.remove('selected');
-            });
-            selectedButton.classList.add('selected');
+            var index = selectedNumbers.indexOf(number);
+            if (index === -1) {
+                selectedNumbers.push(number);
+                selectedButton.classList.add('selected');
+            } else {
+                selectedNumbers.splice(index, 1);
+                selectedButton.classList.remove('selected');
+            }
             checkDuplicates();
         }
 
         function checkDuplicates() {
-            var selectedNumbers = [];
-            var allButtons = document.querySelectorAll('.num-set-button.selected');
-            allButtons.forEach(function(button) {
-                selectedNumbers.push(parseInt(button.value));
-            });
-            var uniqueNumbers = [...new Set(selectedNumbers)];
             var resultElement = document.getElementById('result');
-            if (uniqueNumbers.length < selectedNumbers.length) {
-                resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+            if (selectedNumbers.length !== 3) {
+                resultElement.innerHTML = "<span class='duplicate'>3つの数字を選択してください</span>";
             } else {
-                resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+                var uniqueNumbers = [...new Set(selectedNumbers)];
+                if (uniqueNumbers.length < selectedNumbers.length) {
+                    resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+                } else {
+                    resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+                }
             }
         }
     </script>
@@ -48,9 +52,9 @@
 <body>
     <h1>4th encounter solver</h1>
     <div>
-        <button id="num-set-0" class="num-set-button" value="3" onclick="toggleSelection('num-set-0')">裏A</button>
-        <button id="num-set-1" class="num-set-button" value="4" onclick="toggleSelection('num-set-1')">裏B</button>
-        <button id="num-set-2" class="num-set-button" value="0" onclick="toggleSelection('num-set-2')">裏C</button>
+        <button id="num-set-0" class="num-set-button" onclick="toggleSelection('num-set-0', 3)">裏A (3)</button>
+        <button id="num-set-1" class="num-set-button" onclick="toggleSelection('num-set-1', 4)">裏B (4)</button>
+        <button id="num-set-2" class="num-set-button" onclick="toggleSelection('num-set-2', 0)">裏C (0)</button>
     </div>
     <div id="result"></div>
 </body>
