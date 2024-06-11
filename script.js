@@ -155,16 +155,6 @@ function updateSelectionF() {
     });
 }
 
-function checkDuplicatesD() {
-    var resultElement = document.getElementById('resultD');
-    var allSelectedNumbers = selectedNumbersE.concat(selectedNumbersF);
-    var uniqueNumbers = [...new Set(allSelectedNumbers)];
-    if (uniqueNumbers.length < allSelectedNumbers.length) {
-        resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
-    } else {
-        resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
-    }
-}
 
 function calculateEquation() {
     var resultElementD = document.getElementById('resultD');
