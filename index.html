@@ -4,8 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4th encounter solver</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ボタンのクリック時の処理を追加
+            document.querySelectorAll('.num-set-button').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    toggleSelection(button);
+                });
+            });
+        });
+        
+        // ボタンの選択状態を切り替える関数
+        function toggleSelection(button) {
+            // 選択されたボタン以外の全てのボタンからselectedクラスを削除
+            document.querySelectorAll('.num-set-button').forEach(function(btn) {
+                if(btn !== button) {
+                    btn.classList.remove('selected');
+                }
+            });
+            
+            // 選択されたボタンにselectedクラスを追加
+            button.classList.toggle('selected');
+        }
+    </script>
+    <style>
+        h2 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .slot {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* スロット間の余白を追加 */
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-gap: 5px; /* ボタン間の余白を追加 */
+        }
+        .result-box {
+            margin-top: 10px;
+        }
+        .selected {
+            background-color: lightblue; /* 選択されたボタンの背景色 */
+        }
+    </style>
 </head>
 <body>
     <h1>4th encounter solver</h1>
@@ -13,61 +57,62 @@
         <div class="slot">
             <h2>裏A：</h2>
             <div>
-                <button class="num-set-button-A">3</button>
-                <button class="num-set-button-A">4</button>
-                <button class="num-set-button-A">0</button>
+                <button class="num-set-button num-set-button-A">3</button>
+                <button class="num-set-button num-set-button-A">4</button>
+                <button class="num-set-button num-set-button-A">0</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏B：</h2>
             <div>
-                <button class="num-set-button-B">3</button>
-                <button class="num-set-button-B">4</button>
-                <button class="num-set-button-B">0</button>
+                <button class="num-set-button num-set-button-B">3</button>
+                <button class="num-set-button num-set-button-B">4</button>
+                <button class="num-set-button num-set-button-B">0</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏C：</h2>
             <div>
-                <button class="num-set-button-C">3</button>
-                <button class="num-set-button-C">4</button>
-                <button class="num-set-button-C">0</button>
+                <button class="num-set-button num-set-button-C">3</button>
+                <button class="num-set-button num-set-button-C">4</button>
+                <button class="num-set-button num-set-button-C">0</button>
             </div>
         </div>
         <div class="slot">
             <h2>表D1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-D">球体</button>
-                <button class="num-set-button-D">立方体</button>
-                <button class="num-set-button-D">三角錐</button>
-                <button class="num-set-button-D">円柱</button>
-                <button class="num-set-button-D">円錐</button>
-                <button class="num-set-button-D">三角柱</button>
+                <button class="num-set-button num-set-button-D">球体</button>
+                <button class="num-set-button num-set-button-D">立方体</button>
+                <button class="num-set-button num-set-button-D">三角錐</button>
+                <button class="num-set-button num-set-button-D">円柱</button>
+                <button class="num-set-button num-set-button-D">円錐</button>
+                <button class="num-set-button num-set-button-D">三角柱</button>
             </div>
         </div>    
         <div class="slot">
             <h2>表E1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-E">球体</button>
-                <button class="num-set-button-E">立方体</button>
-                <button class="num-set-button-E">三角錐</button>
-                <button class="num-set-button-E">円柱</button>
-                <button class="num-set-button-E">円錐</button>
-                <button class="num-set-button-E">三角柱</button>
+                <button class="num-set-button num-set-button-E">球体</button>
+                <button class="num-set-button num-set-button-E">立方体</button>
+                <button class="num-set-button num-set-button-E">三角錐</button>
+                <button class="num-set-button num-set-button-E">円柱</button>
+                <button class="num-set-button num-set-button-E">円錐</button>
+                <button class="num-set-button num-set-button-E">三角柱</button>
             </div>
         </div>
         <div class="slot">
             <h2>表F1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-F">球体</button>
-                <button class="num-set-button-F">立方体</button>
-                <button class="num-set-button-F">三角錐</button>
-                <button class="num-set-button-F">円柱</button>
-                <button class="num-set-button-F">円錐</button>
-                <button class="num-set-button-F">三角柱</button>
+                <button class="num-set-button num-set-button-F">球体</button>
+                <button class="num-set-button num-set-button-F">立方体</button>
+                <button class="num-set-button num-set-button-F">三角錐</button>
+                <button class="num-set-button num-set-button-F">円柱</button>
+                <button class="num-set-button num-set-button-F">円錐</button>
+                <button class="num-set-button num-set-button-F">三角柱</button>
             </div>
         </div>
         <button onclick="clearSelection()">入力クリア</button>
     </div>
 </body>
 </html>
+
