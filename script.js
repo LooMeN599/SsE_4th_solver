@@ -1,6 +1,7 @@
 var selectedNumberA = null;
 var selectedNumberB = null;
 var selectedNumberC = null;
+var selectedShapeD = null;
 
 function toggleSelectionA(number) {
     selectedNumberA = number;
@@ -14,6 +15,11 @@ function toggleSelectionB(number) {
 
 function toggleSelectionC(number) {
     selectedNumberC = number;
+    updateSelection();
+}
+
+function toggleSelectionD(shape) {
+    selectedShapeD = shape;
     updateSelection();
 }
 
@@ -45,6 +51,32 @@ function updateSelection() {
             button.classList.remove('selected');
         }
     });
+    
+    if (selectedShapeD !== null) {
+        let resultDText = '';
+        switch (selectedShapeD) {
+            case '球体':
+                resultDText = "球体：0+0";
+                break;
+            case '立方体':
+                resultDText = "立方体：4+4";
+                break;
+            case '三角錐':
+                resultDText = "三角錐：3+3";
+                break;
+            case '円柱':
+                resultDText = "円柱：0+4";
+                break;
+            case '円錐':
+                resultDText = "円錐：0+3";
+                break;
+            case '三角柱':
+                resultDText = "三角柱：3+4";
+                break;
+        }
+        document.getElementById("resultD").innerText = resultDText;
+    }
+    
     checkDuplicates();
 }
 
@@ -68,19 +100,8 @@ function checkDuplicates() {
     }
 }
 
-var selectedNumbersD = [];
 var selectedNumbersE = [];
 var selectedNumbersF = [];
-
-function toggleSelectionD(number) {
-    var index = selectedNumbersD.indexOf(number);
-    if (index === -1) {
-        selectedNumbersD.push(number);
-    } else {
-        selectedNumbersD.splice(index, 1);
-    }
-    updateSelectionD();
-}
 
 function toggleSelectionE(number) {
     var index = selectedNumbersE.indexOf(number);
@@ -100,18 +121,6 @@ function toggleSelectionF(number) {
         selectedNumbersF.splice(index, 1);
     }
     updateSelectionF();
-}
-
-function updateSelectionD() {
-    var allButtonsD = document.querySelectorAll('.num-set-button-D');
-    allButtonsD.forEach(function(button) {
-        var number = parseInt(button.innerText);
-        if (selectedNumbersD.includes(number)) {
-            button.classList.add('selected');
-        } else {
-            button.classList.remove('selected');
-        }
-    });
 }
 
 function updateSelectionE() {
@@ -140,7 +149,7 @@ function updateSelectionF() {
 
 function checkDuplicatesD() {
     var resultElement = document.getElementById('resultD');
-    var allSelectedNumbers = selectedNumbersD.concat(selectedNumbersE, selectedNumbersF);
+    var allSelectedNumbers = selectedNumbersE.concat(selectedNumbersF);
     var uniqueNumbers = [...new Set(allSelectedNumbers)];
     if (uniqueNumbers.length < allSelectedNumbers.length) {
         resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
@@ -154,11 +163,9 @@ function calculateEquation() {
     var resultElementE = document.getElementById('resultE');
     var resultElementF = document.getElementById('resultF');
 
-    var d = selectedNumbersD[0] + "+" + selectedNumbersD[1];
     var e = selectedNumbersE[0] + "+" + selectedNumbersE[1];
     var f = selectedNumbersF[0] + "+" + selectedNumbersF[1];
 
-    resultElementD.innerText = "表D1: " + d;
     resultElementE.innerText = "表E1: " + e;
     resultElementF.innerText = "表F1: " + f;
 }
@@ -167,15 +174,12 @@ function clearSelection() {
     selectedNumberA = null;
     selectedNumberB = null;
     selectedNumberC = null;
-    updateSelection();
-    
-    selectedNumbersD = [];
+    selectedShapeD = null;
     selectedNumbersE = [];
     selectedNumbersF = [];
-    updateSelectionD();
+    updateSelection();
     updateSelectionE();
     updateSelectionF();
-    
     document.getElementById('result').innerText = "";
     document.getElementById('resultD').innerText = "";
     document.getElementById('resultE').innerText = "";
