@@ -19,16 +19,46 @@
         }
     </style>
     <script>
-        var selectedNumbers = [];
+        var selectedNumbersA = [];
 
-        function toggleSelection(buttonId, number) {
-            var selectedButton = document.getElementById(buttonId);
-            var index = selectedNumbers.indexOf(number);
+        function toggleSelectionA(number) {
+            var selectedButton = document.getElementById('num-set-A-' + number);
+            var index = selectedNumbersA.indexOf(number);
             if (index === -1) {
-                selectedNumbers.push(number);
+                selectedNumbersA.push(number);
                 selectedButton.classList.add('selected');
             } else {
-                selectedNumbers.splice(index, 1);
+                selectedNumbersA.splice(index, 1);
+                selectedButton.classList.remove('selected');
+            }
+            checkDuplicates();
+        }
+
+        var selectedNumbersB = [];
+
+        function toggleSelectionB(number) {
+            var selectedButton = document.getElementById('num-set-B-' + number);
+            var index = selectedNumbersB.indexOf(number);
+            if (index === -1) {
+                selectedNumbersB.push(number);
+                selectedButton.classList.add('selected');
+            } else {
+                selectedNumbersB.splice(index, 1);
+                selectedButton.classList.remove('selected');
+            }
+            checkDuplicates();
+        }
+
+        var selectedNumbersC = [];
+
+        function toggleSelectionC(number) {
+            var selectedButton = document.getElementById('num-set-C-' + number);
+            var index = selectedNumbersC.indexOf(number);
+            if (index === -1) {
+                selectedNumbersC.push(number);
+                selectedButton.classList.add('selected');
+            } else {
+                selectedNumbersC.splice(index, 1);
                 selectedButton.classList.remove('selected');
             }
             checkDuplicates();
@@ -36,11 +66,12 @@
 
         function checkDuplicates() {
             var resultElement = document.getElementById('result');
-            if (selectedNumbers.length !== 3) {
+            var allSelectedNumbers = selectedNumbersA.concat(selectedNumbersB, selectedNumbersC);
+            if (allSelectedNumbers.length !== 9) {
                 resultElement.innerHTML = "<span class='duplicate'>3つの数字を選択してください</span>";
             } else {
-                var uniqueNumbers = [...new Set(selectedNumbers)];
-                if (uniqueNumbers.length < selectedNumbers.length) {
+                var uniqueNumbers = [...new Set(allSelectedNumbers)];
+                if (uniqueNumbers.length < allSelectedNumbers.length) {
                     resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
                 } else {
                     resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
@@ -53,22 +84,22 @@
     <h1>4th encounter solver</h1>
     <div>
         <div>
-            <label for="slot-A">裏A：</label>
-            <button id="num-set-0" class="num-set-button" onclick="toggleSelection('num-set-0', 3)">3</button>
-            <button id="num-set-1" class="num-set-button" onclick="toggleSelection('num-set-1', 4)">4</button>
-            <button id="num-set-2" class="num-set-button" onclick="toggleSelection('num-set-2', 0)">0</button>
+            <h2>裏A：</h2>
+            <button id="num-set-A-3" onclick="toggleSelectionA(3)">3</button>
+            <button id="num-set-A-4" onclick="toggleSelectionA(4)">4</button>
+            <button id="num-set-A-0" onclick="toggleSelectionA(0)">0</button>
         </div>
         <div>
-            <label for="slot-B">裏B：</label>
-            <button id="num-set-3" class="num-set-button" onclick="toggleSelection('num-set-3', 3)">3</button>
-            <button id="num-set-4" class="num-set-button" onclick="toggleSelection('num-set-4', 4)">4</button>
-            <button id="num-set-5" class="num-set-button" onclick="toggleSelection('num-set-5', 0)">0</button>
+            <h2>裏B：</h2>
+            <button id="num-set-B-3" onclick="toggleSelectionB(3)">3</button>
+            <button id="num-set-B-4" onclick="toggleSelectionB(4)">4</button>
+            <button id="num-set-B-0" onclick="toggleSelectionB(0)">0</button>
         </div>
         <div>
-            <label for="slot-C">裏C：</label>
-            <button id="num-set-6" class="num-set-button" onclick="toggleSelection('num-set-6', 3)">3</button>
-            <button id="num-set-7" class="num-set-button" onclick="toggleSelection('num-set-7', 4)">4</button>
-            <button id="num-set-8" class="num-set-button" onclick="toggleSelection('num-set-8', 0)">0</button>
+            <h2>裏C：</h2>
+            <button id="num-set-C-3" onclick="toggleSelectionC(3)">3</button>
+            <button id="num-set-C-4" onclick="toggleSelectionC(4)">4</button>
+            <button id="num-set-C-0" onclick="toggleSelectionC(0)">0</button>
         </div>
     </div>
     <div id="result"></div>
