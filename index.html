@@ -193,11 +193,12 @@
 
             // 正しい組み合わせを返すように修正
             if (firstPart === '4a') firstPart = '4b';
-            else if (secondPart === '4a') secondPart = '4b';
+            if (secondPart === '4a') secondPart = '4b';
+            if (firstPart === '0a') firstPart = '0b';
+            if (secondPart === '0a') secondPart = '0b';
 
             document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
         }
-
         // F4スロットを更新する関数
         function updateResultForF4() {
             const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
