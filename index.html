@@ -24,106 +24,95 @@
         }
     </style>
     <script>
-        var selectedNumbersD = [];
-        var selectedNumbersE = [];
-        var selectedNumbersF = [];
+        var selectedNumberA = null;
 
-        function toggleSelectionD(number) {
-            var index = selectedNumbersD.indexOf(number);
-            if (index === -1) {
-                selectedNumbersD.push(number);
+        function toggleSelectionA(number) {
+            if (selectedNumberA === number) {
+                selectedNumberA = null;
             } else {
-                selectedNumbersD.splice(index, 1);
+                selectedNumberA = number;
             }
-            updateSelectionD();
+            updateSelection();
         }
 
-        function toggleSelectionE(number) {
-            var index = selectedNumbersE.indexOf(number);
-            if (index === -1) {
-                selectedNumbersE.push(number);
+        var selectedNumberB = null;
+
+        function toggleSelectionB(number) {
+            if (selectedNumberB === number) {
+                selectedNumberB = null;
             } else {
-                selectedNumbersE.splice(index, 1);
+                selectedNumberB = number;
             }
-            updateSelectionE();
+            updateSelection();
         }
 
-        function toggleSelectionF(number) {
-            var index = selectedNumbersF.indexOf(number);
-            if (index === -1) {
-                selectedNumbersF.push(number);
+        var selectedNumberC = null;
+
+        function toggleSelectionC(number) {
+            if (selectedNumberC === number) {
+                selectedNumberC = null;
             } else {
-                selectedNumbersF.splice(index, 1);
+                selectedNumberC = number;
             }
-            updateSelectionF();
+            updateSelection();
         }
 
-        function updateSelectionD() {
-            var allButtonsD = document.querySelectorAll('.num-set-button-D');
-            allButtonsD.forEach(function(button) {
+        function updateSelection() {
+            var allButtonsA = document.querySelectorAll('.num-set-button-A');
+            allButtonsA.forEach(function(button) {
                 var number = parseInt(button.innerText);
-                if (selectedNumbersD.includes(number)) {
+                if (number === selectedNumberA) {
                     button.classList.add('selected');
                 } else {
                     button.classList.remove('selected');
                 }
             });
-        }
-
-        function updateSelectionE() {
-            var allButtonsE = document.querySelectorAll('.num-set-button-E');
-            allButtonsE.forEach(function(button) {
+            var allButtonsB = document.querySelectorAll('.num-set-button-B');
+            allButtonsB.forEach(function(button) {
                 var number = parseInt(button.innerText);
-                if (selectedNumbersE.includes(number)) {
+                if (number === selectedNumberB) {
                     button.classList.add('selected');
                 } else {
                     button.classList.remove('selected');
                 }
             });
-        }
-
-        function updateSelectionF() {
-            var allButtonsF = document.querySelectorAll('.num-set-button-F');
-            allButtonsF.forEach(function(button) {
+            var allButtonsC = document.querySelectorAll('.num-set-button-C');
+            allButtonsC.forEach(function(button) {
                 var number = parseInt(button.innerText);
-                if (selectedNumbersF.includes(number)) {
+                if (number === selectedNumberC) {
                     button.classList.add('selected');
                 } else {
                     button.classList.remove('selected');
                 }
             });
+            checkDuplicates();
         }
 
         function checkDuplicates() {
-            var allSelectedNumbers = [...selectedNumbersD, ...selectedNumbersE, ...selectedNumbersF];
+            var resultElement = document.getElementById('result');
+            var allSelectedNumbers = [];
+            if (selectedNumberA !== null) {
+                allSelectedNumbers.push(selectedNumberA);
+            }
+            if (selectedNumberB !== null) {
+                allSelectedNumbers.push(selectedNumberB);
+            }
+            if (selectedNumberC !== null) {
+                allSelectedNumbers.push(selectedNumberC);
+            }
             var uniqueNumbers = [...new Set(allSelectedNumbers)];
-            return uniqueNumbers.length !== allSelectedNumbers.length;
-        }
-
-        function calculateEquation() {
-            var resultElementD = document.getElementById('resultD');
-            var resultElementE = document.getElementById('resultE');
-            var resultElementF = document.getElementById('resultF');
-
-            var d = selectedNumbersD[0] + "+" + selectedNumbersD[1];
-            var e = selectedNumbersE[0] + "+" + selectedNumbersE[1];
-            var f = selectedNumbersF[0] + "+" + selectedNumbersF[1];
-
-            resultElementD.innerText = "表D1: " + d;
-            resultElementE.innerText = "表E1: " + e;
-            resultElementF.innerText = "表F1: " + f;
+            if (uniqueNumbers.length < allSelectedNumbers.length) {
+                resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+            } else {
+                resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+            }
         }
 
         function clearSelection() {
-            selectedNumbersD = [];
-            selectedNumbersE = [];
-            selectedNumbersF = [];
-            updateSelectionD();
-            updateSelectionE();
-            updateSelectionF();
-            document.getElementById('resultD').innerText = "";
-            document.getElementById('resultE').innerText = "";
-            document.getElementById('resultF').innerText = "";
+            selectedNumberA = null;
+            selectedNumberB = null;
+            selectedNumberC = null;
+            updateSelection();
         }
     </script>
 </head>
@@ -131,28 +120,25 @@
     <h1>4th encounter solver</h1>
     <div>
         <div>
-            <h2 style="display: inline;">表D1：</h2>
-            <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
-            <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
-            <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
+            <h2 style="display: inline;">裏A：</h2> <!-- 改行しないように修正 -->
+            <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
+            <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
+            <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
         </div>
         <div>
-            <h2 style="display: inline;">表E1：</h2>
-            <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
-            <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
-            <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
+            <h2 style="display: inline;">裏B：</h2> <!-- 改行しないように修正 -->
+            <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
+            <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
+            <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
         </div>
         <div>
-            <h2 style="display: inline;">表F1：</h2>
-            <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
-            <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
-            <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
+            <h2 style="display: inline;">裏C：</h2> <!-- 改行しないように修正 -->
+            <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
+            <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
+            <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
         </div>
-        <button onclick="calculateEquation()">計算する</button>
-        <button onclick="clearSelection()">入力クリア</button>
+        <div id="result"></div> <!-- 入力クリアボタンより上に結果表示を移動 -->
+        <button onclick="clearSelection()">入力クリア</button> <!-- 入力クリアボタンを追加 -->
     </div>
-    <div id="resultD"></div>
-    <div id="resultE"></div>
-    <div id="resultF"></div>
 </body>
 </html>
