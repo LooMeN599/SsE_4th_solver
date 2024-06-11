@@ -137,6 +137,7 @@ function toggleSelectionE(number) {
         selectedNumbersE.splice(index, 1);
     }
     updateSelectionE();
+    checkDuplicatesE(); // 重複チェックを追加
 }
 
 function toggleSelectionF(number) {
@@ -147,6 +148,7 @@ function toggleSelectionF(number) {
         selectedNumbersF.splice(index, 1);
     }
     updateSelectionF();
+    checkDuplicatesF(); // 重複チェックを追加
 }
 
 function updateSelectionE() {
@@ -171,6 +173,26 @@ function updateSelectionF() {
             button.classList.remove('selected');
         }
     });
+}
+
+function checkDuplicatesE() {
+    var resultElementE = document.getElementById('resultE');
+    var uniqueNumbersE = [...new Set(selectedNumbersE)];
+    if (uniqueNumbersE.length < selectedNumbersE.length) {
+        resultElementE.innerHTML = "<span class='duplicate'>重複あり</span>";
+    } else {
+        resultElementE.innerHTML = "<span class='noduplicate'>重複なし</span>";
+    }
+}
+
+function checkDuplicatesF() {
+    var resultElementF = document.getElementById('resultF');
+    var uniqueNumbersF = [...new Set(selectedNumbersF)];
+    if (uniqueNumbersF.length < selectedNumbersF.length) {
+        resultElementF.innerHTML = "<span class='duplicate'>重複あり</span>";
+    } else {
+        resultElementF.innerHTML = "<span class='noduplicate'>重複なし</span>";
+    }
 }
 
 
