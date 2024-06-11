@@ -170,7 +170,26 @@
 
             document.getElementById('result-Anatomy').innerText = resultText;
         }
-    
+        // D4スロットを更新する関数
+        function updateResultForD4() {
+        const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonD1) return;
+
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
+        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Eで(\d[a-z])を解剖|Dで(\d[a-z])を解剖、Fで(\d[a-z])を解剖/);
+
+        if (match) {
+            const unwantedX = match[1] || match[3];
+            const neededY = match[2] || match[4];
+            
+            if (firstPart === unwantedX) firstPart = neededY;
+            else if (secondPart === unwantedX) secondPart = neededY;
+        }
+
+        document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
+    }
+
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
