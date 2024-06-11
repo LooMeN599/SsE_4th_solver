@@ -11,7 +11,7 @@
                 toggleSelection(button);
                 updateCorrespondingSlot(button);
                 updateFilteredResults();
-                updatePostAnatomySlot();
+                updatePostAnatomySlot(); // 追加
             });
         });
     });
@@ -252,7 +252,7 @@
         const resultD4 = document.getElementById('result-D4').innerText;
         const resultE4 = document.getElementById('result-E4').innerText;
         const resultF4 = document.getElementById('result-F4').innerText;
-        
+
         const resultD2 = document.getElementById('result-D2').innerText.split('\n')[1];
         const resultE2 = document.getElementById('result-E2').innerText.split('\n')[1];
         const resultF2 = document.getElementById('result-F2').innerText.split('\n')[1];
@@ -266,6 +266,8 @@
 
     // 完成判定を行う関数
     function checkCompletion(result4, result2, label) {
+        if (!result4 || !result2) return `${label}：未選択`;
+
         const normalize = (value) => value.replace(/[ab]/g, '');
 
         const [first4, second4] = result4.match(/\d[a-z]/g).map(normalize);
@@ -296,6 +298,7 @@
             document.getElementById('result-E4').innerText = '';
             document.getElementById('result-F4').innerText = '';
             document.getElementById('result-Anatomy').innerText = '';
+            document.getElementById('result-PostAnatomy').innerText = ''; // 追加
         }
     </script>
     
