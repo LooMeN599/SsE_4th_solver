@@ -176,12 +176,19 @@ function calculateEquation() {
 }
 
 function clearSelection() {
+    selectedNumberA = null;
+    selectedNumberB = null;
+    selectedNumberC = null;
+    updateSelection();
+    
     selectedNumbersD = [];
     selectedNumbersE = [];
     selectedNumbersF = [];
     updateSelectionD();
     updateSelectionE();
     updateSelectionF();
+    
+    document.getElementById('result').innerText = "";
     document.getElementById('resultD').innerText = "";
     document.getElementById('resultE').innerText = "";
     document.getElementById('resultF').innerText = "";
