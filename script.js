@@ -100,11 +100,20 @@ function checkDuplicates() {
     if (selectedNumberC !== null) {
         allSelectedNumbers.push(selectedNumberC);
     }
-    var uniqueNumbers = [...new Set(allSelectedNumbers)];
-    if (uniqueNumbers.length < allSelectedNumbers.length) {
-        resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+
+    // 裏A、裏B、裏C以外の選択があるかどうかをチェック
+    var hasOtherSelection = selectedNumberA === null && selectedNumberB === null && selectedNumberC === null;
+
+    // 裏A、裏B、裏C以外の選択がある場合のみ、重複チェックを実行
+    if (hasOtherSelection) {
+        var uniqueNumbers = [...new Set(allSelectedNumbers)];
+        if (uniqueNumbers.length < allSelectedNumbers.length) {
+            resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+        } else {
+            resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+        }
     } else {
-        resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+        resultElement.innerHTML = ""; // 裏A、裏B、裏C以外の選択がない場合、結果を空にする
     }
 }
 
