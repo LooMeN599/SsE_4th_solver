@@ -16,8 +16,9 @@
         
         // ボタンの選択状態を切り替える関数
         function toggleSelection(button) {
-            // 選択されたボタン以外の全てのボタンからselectedクラスを削除
-            document.querySelectorAll('.num-set-button').forEach(function(btn) {
+            const slot = button.closest('.slot');
+            // ボタンが属するスロットの全てのボタンからselectedクラスを削除
+            slot.querySelectorAll('.num-set-button').forEach(function(btn) {
                 if(btn !== button) {
                     btn.classList.remove('selected');
                 }
@@ -25,6 +26,13 @@
             
             // 選択されたボタンにselectedクラスを追加
             button.classList.toggle('selected');
+        }
+        
+        // 入力をクリアする関数
+        function clearSelection() {
+            document.querySelectorAll('.selected').forEach(function(button) {
+                button.classList.remove('selected');
+            });
         }
     </script>
     <style>
@@ -115,4 +123,3 @@
     </div>
 </body>
 </html>
-
