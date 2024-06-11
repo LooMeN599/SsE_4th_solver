@@ -92,6 +92,11 @@
             updateNeededAndUnneededNumbers('result-D2', 'result-D3');
             updateNeededAndUnneededNumbers('result-E2', 'result-E3');
             updateNeededAndUnneededNumbers('result-F2', 'result-F3');
+            
+            updateAnatomySlot();
+            updateResultForD4();
+            updateResultForE4();
+            updateResultForF4();
         }
     
         // 指定されたスロットの結果を更新する関数
@@ -139,6 +144,89 @@
             targetElement.innerText = resultText;
         }
     
+        // 解剖スロットを更新する関数
+        function updateAnatomySlot() {
+            const resultD3 = document.getElementById('result-D3').innerText;
+            const resultE3 = document.getElementById('result-E3').innerText;
+            const resultF3 = document.getElementById('result-F3').innerText;
+    
+            const unwantedD3 = resultD3.match(/(\d[a-z])/g) || [];
+            const unwantedE3 = resultE3.match(/(\d[a-z])/g) || [];
+            const unwantedF3 = resultF3.match(/(\d[a-z])/g) || [];
+    
+            let resultText = '';
+            if (unwantedD3.length > 0) {
+                resultText += `Dで${unwantedD3.join('と')}を解剖`;
+            }
+            if (unwantedE3.length > 0) {
+                if (resultText) resultText += '、';
+                resultText += `Eで${unwantedE3.join('と')}を解剖`;
+            } else if (unwantedF3.length > 0) {
+                if (resultText) resultText += '、';
+                resultText += `Fで${unwantedF3.join('と')}を解剖`;
+            }
+    
+            document.getElementById('result-Anatomy').innerText = resultText;
+        }
+    
+        // D4スロットを更新する関数
+        function updateResultForD4() {
+            const resultD2 = document.getElementById('result-D2').innerText;
+            const resultD3 = document.getElementById('result-D3').innerText;
+            const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
+    
+            if (!selectedButtonD1) return;
+    
+            let [firstPart, secondPart] = resultD2.split('\n')[0].match(/\d[a-z]/g);
+            const unwantedD3 = resultD3.match(/\d[a-z]/g) || [];
+            const neededD3 = resultD3.match(/\d[a-z]/g) || [];
+    
+            if (unwantedD3.length > 0 && neededD3.length > 0) {
+                if (firstPart === unwantedD3[0]) firstPart = neededD3[0];
+                else if (secondPart === unwantedD3[0]) secondPart = neededD3[0];
+            }
+    
+            document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
+        }
+    
+        // E4スロットを更新する関数
+        function updateResultForE4() {
+            const resultAnatomy = document.getElementById('result-Anatomy').innerText;
+            const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
+    
+            if (!selectedButtonE1) return;
+    
+            let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
+            const unwantedE3 = document.getElementById('result-E3').innerText.match(/\d[a-z]/g) || [];
+            const neededE3 = document.getElementById('result-E3').innerText.match(/\d[a-z]/g) || [];
+    
+            if (resultAnatomy.includes('Eで') && unwantedE3.length > 0 && neededE3.length > 0) {
+                if (firstPart === unwantedE3[0]) firstPart = neededE3[0];
+                else if (secondPart === unwantedE3[0]) secondPart = neededE3[0];
+            }
+    
+            document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
+        }
+    
+        // F4スロットを更新する関数
+        function updateResultForF4() {
+            const resultAnatomy = document.getElementById('result-Anatomy').innerText;
+            const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
+    
+            if (!selectedButtonF1) return;
+    
+            let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
+            const unwantedF3 = document.getElementById('result-F3').innerText.match(/\d[a-z]/g) || [];
+            const neededF3 = document.getElementById('result-F3').innerText.match(/\d[a-z]/g) || [];
+    
+            if (resultAnatomy.includes('Fで') && unwantedF3.length > 0 && neededF3.length > 0) {
+                if (firstPart === unwantedF3[0]) firstPart = neededF3[0];
+                else if (secondPart === unwantedF3[0]) secondPart = neededF3[0];
+            }
+    
+            document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
+        }
+    
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
@@ -150,10 +238,12 @@
             document.getElementById('result-D3').innerText = '';
             document.getElementById('result-E3').innerText = '';
             document.getElementById('result-F3').innerText = '';
+            document.getElementById('result-D4').innerText = '';
+            document.getElementById('result-E4').innerText = '';
+            document.getElementById('result-F4').innerText = '';
+            document.getElementById('result-Anatomy').innerText = '';
         }
     </script>
-    
-    
     
     
     <style>
@@ -176,10 +266,9 @@
             background-color: lightblue; /* 選択されたボタンの背景色 */
         }
         .slot:nth-of-type(n+4) {
-        margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
-    }
+            margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
+        }
     </style>
-
 </head>
 <body>
     <h1>4th encounter solver</h1>
@@ -218,7 +307,7 @@
                 <button class="num-set-button num-set-button-D">円錐</button>
                 <button class="num-set-button num-set-button-D">三角柱</button>
             </div>
-        </div>
+        </div>    
         <div class="slot">
             <h2>表E1：</h2>
             <div class="button-grid">
@@ -264,6 +353,22 @@
         <div class="slot">
             <h2>表F3：</h2>
             <div id="result-F3"></div>
+        </div>
+        <div class="slot">
+            <h2>解剖1：</h2>
+            <div id="result-Anatomy"></div>
+        </div>
+        <div class="slot">
+            <h2>表D4：</h2>
+            <div id="result-D4"></div>
+        </div>
+        <div class="slot">
+            <h2>表E4：</h2>
+            <div id="result-E4"></div>
+        </div>
+        <div class="slot">
+            <h2>表F4：</h2>
+            <div id="result-F4"></div>
         </div>
         <button onclick="clearSelection()">入力クリア</button>
     </div>
