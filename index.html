@@ -25,6 +25,9 @@
         .result-box {
             margin-top: 10px;
         }
+        .selected {
+            background-color: lightblue; /* 選択されたボタンの背景色 */
+        }
     </style>
 </head>
 <body>
@@ -33,67 +36,66 @@
         <div class="slot">
             <h2>裏A：</h2>
             <div>
-                <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
-                <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
-                <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
+                <button class="num-set-button-A">3</button>
+                <button class="num-set-button-A">4</button>
+                <button class="num-set-button-A">0</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏B：</h2>
             <div>
-                <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
-                <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
-                <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
+                <button class="num-set-button-B">3</button>
+                <button class="num-set-button-B">4</button>
+                <button class="num-set-button-B">0</button>
             </div>
         </div>
         <div class="slot">
             <h2>裏C：</h2>
             <div>
-                <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
-                <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
-                <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
+                <button class="num-set-button-C">3</button>
+                <button class="num-set-button-C">4</button>
+                <button class="num-set-button-C">0</button>
             </div>
         </div>
         <div id="result" class="result-box"></div>
         <div class="slot">
             <h2>表D1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-D" onclick="toggleSelectionD('球体')">球体</button>
-                <button class="num-set-button-D" onclick="toggleSelectionD('立方体')">立方体</button>
-                <button class="num-set-button-D" onclick="toggleSelectionD('三角錐')">三角錐</button>
-                <button class="num-set-button-D" onclick="toggleSelectionD('円柱')">円柱</button>
-                <button class="num-set-button-D" onclick="toggleSelectionD('円錐')">円錐</button>
-                <button class="num-set-button-D" onclick="toggleSelectionD('三角柱')">三角柱</button>
+                <button class="num-set-button-D">球体</button>
+                <button class="num-set-button-D">立方体</button>
+                <button class="num-set-button-D">三角錐</button>
+                <button class="num-set-button-D">円柱</button>
+                <button class="num-set-button-D">円錐</button>
+                <button class="num-set-button-D">三角柱</button>
             </div>
         </div>
         <div id="resultD" class="result-box"></div>
         <div class="slot">
             <h2>表E1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-E" onclick="toggleSelectionE('球体')">球体</button>
-                <button class="num-set-button-E" onclick="toggleSelectionE('立方体')">立方体</button>
-                <button class="num-set-button-E" onclick="toggleSelectionE('三角錐')">三角錐</button>
-                <button class="num-set-button-E" onclick="toggleSelectionE('円柱')">円柱</button>
-                <button class="num-set-button-E" onclick="toggleSelectionE('円錐')">円錐</button>
-                <button class="num-set-button-E" onclick="toggleSelectionE('三角柱')">三角柱</button>
+                <button class="num-set-button-E">球体</button>
+                <button class="num-set-button-E">立方体</button>
+                <button class="num-set-button-E">三角錐</button>
+                <button class="num-set-button-E">円柱</button>
+                <button class="num-set-button-E">円錐</button>
+                <button class="num-set-button-E">三角柱</button>
             </div>
         </div>
         <div id="resultE" class="result-box"></div>
         <div class="slot">
             <h2>表F1：</h2>
             <div class="button-grid">
-                <button class="num-set-button-F" onclick="toggleSelectionF('球体')">球体</button>
-                <button class="num-set-button-F" onclick="toggleSelectionF('立方体')">立方体</button>
-                <button class="num-set-button-F" onclick="toggleSelectionF('三角錐')">三角錐</button>
-                <button class="num-set-button-F" onclick="toggleSelectionF('円柱')">円柱</button>
-                <button class="num-set-button-F" onclick="toggleSelectionF('円錐')">円錐</button>
-                <button class="num-set-button-F" onclick="toggleSelectionF('三角柱')">三角柱</button>
+                <button class="num-set-button-F">球体</button>
+                <button class="num-set-button-F">立方体</button>
+                <button class="num-set-button-F">三角錐</button>
+                <button class="num-set-button-F">円柱</button>
+                <button class="num-set-button-F">円錐</button>
+                <button class="num-set-button-F">三角柱</button>
             </div>
-            </div>
-            <button onclick="calculateEquation()">計算する</button>
-            <button onclick="clearSelection()">入力クリア</button>
-            </div>
-            <div id="resultF" class="result-box"></div>
-            
-            </body>
-            </html>
+        </div>
+        <button onclick="calculateEquation()">計算する</button>
+        <button onclick="clearSelection()">入力クリア</button>
+    </div>
+    <div id="resultF" class="result-box"></div>
+</body>
+</html>
