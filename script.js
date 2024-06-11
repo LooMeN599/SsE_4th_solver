@@ -5,21 +5,21 @@ var selectedShapeD = null;
 
 function toggleSelectionA(number) {
     selectedNumberA = number;
-    updateSelection();
     checkDuplicates(); // 重複チェックを追加
-}
+    updateSelection();
+    }
 
 function toggleSelectionB(number) {
     selectedNumberB = number;
-    updateSelection();
     checkDuplicates(); // 重複チェックを追加
-}
+    updateSelection();
+    }
 
 function toggleSelectionC(number) {
     selectedNumberC = number;
-    updateSelection();
     checkDuplicates(); // 重複チェックを追加
-}
+    updateSelection();
+    }
 
 function toggleSelectionD(shape) {
     selectedShapeD = shape;
