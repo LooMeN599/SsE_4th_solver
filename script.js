@@ -186,8 +186,3 @@ function clearSelection() {
     document.getElementById('resultE').innerText = "";
     document.getElementById('resultF').innerText = "";
 }
-/* styles.css */
-/* すべてのdiv要素の直後の改行を削除する */
-div + div {
-    margin-top: -1em; /* マイナスのマージンを適用して、改行を削除 */
-}
