@@ -170,7 +170,7 @@
 
             document.getElementById('result-Anatomy').innerText = resultText;
         }
-        
+
     // D4スロットを更新する関数
     function updateResultForD4() {
         const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
@@ -210,7 +210,26 @@
 
         document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
     }
+    
+    // F4スロットを更新する関数
+    function updateResultForF4() {
+        const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonF1) return;
 
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
+        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Fで(\d[a-z])を解剖/);
+
+        if (match) {
+            const neededY = match[2];
+            const unwantedX = match[1];
+
+            if (firstPart === neededY) firstPart = unwantedX;
+            else if (secondPart === neededY) secondPart = unwantedX;
+        }
+
+        document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
+    }
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
