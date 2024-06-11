@@ -111,7 +111,36 @@
         const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
         
         const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
-        resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
+        const combinedText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
+        
+        const neededNumber = findNeededNumber(correspondingText, resultText);
+
+        resultElement.innerText = neededNumber ? `${combinedText}\n${neededNumber}が必要` : combinedText;
+    }
+
+    // 必要な数字を見つける関数
+    function findNeededNumber(correspondingText, resultText) {
+        const regex = /\((\d), (\d)\)/;
+        const correspondingMatch = correspondingText.match(regex);
+        const resultMatch = resultText.match(regex);
+
+        if (correspondingMatch && resultMatch) {
+            const correspondingSet = new Set([parseInt(correspondingMatch[1]), parseInt(correspondingMatch[2])]);
+            const resultSet = new Set([parseInt(resultMatch[1]), parseInt(resultMatch[2])]);
+
+            for (const num of correspondingSet) {
+                if (!resultSet.has(num)) {
+                    return num;
+                }
+            }
+            for (const num of resultSet) {
+                if (!correspondingSet.has(num)) {
+                    return num;
+                }
+            }
+        }
+
+        return null;
     }
 
     // 入力をクリアする関数
