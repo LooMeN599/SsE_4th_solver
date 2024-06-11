@@ -18,13 +18,6 @@ function toggleSelectionC(number) {
 }
 
 function updateSelection() {
-    document.getElementById("selectedNumberA").innerText = selectedNumberA !== null ? "：" + selectedNumberA : "";
-    document.getElementById("selectedNumberB").innerText = selectedNumberB !== null ? "：" + selectedNumberB : "";
-    document.getElementById("selectedNumberC").innerText = selectedNumberC !== null ? "：" + selectedNumberC : "";
-    // 他のスロットについても同様の処理を行う
-}
-
-function updateSelection() {
     var allButtonsA = document.querySelectorAll('.num-set-button-A');
     allButtonsA.forEach(function(button) {
         var number = parseInt(button.innerText);
