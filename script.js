@@ -25,10 +25,3 @@ function toggleSelection(button) {
         button.classList.add('selected');
     }
 }
-
-// 入力クリアボタンのクリック時の処理
-function clearSelection() {
-    document.querySelectorAll('.num-set-button').forEach(function(button) {
-        button.classList.remove('selected');
-    });
-}
