@@ -101,11 +101,11 @@ function checkDuplicates() {
         allSelectedNumbers.push(selectedNumberC);
     }
 
-    // 裏A、裏B、裏C以外の選択があるかどうかをチェック
-    var hasOtherSelection = selectedNumberA === null && selectedNumberB === null && selectedNumberC === null;
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されているかどうかをチェック
+    var hasAtLeastOneSelection = selectedNumberA !== null || selectedNumberB !== null || selectedNumberC !== null;
 
-    // 裏A、裏B、裏C以外の選択がある場合のみ、重複チェックを実行
-    if (hasOtherSelection) {
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されている場合のみ、重複チェックを実行
+    if (hasAtLeastOneSelection) {
         var uniqueNumbers = [...new Set(allSelectedNumbers)];
         if (uniqueNumbers.length < allSelectedNumbers.length) {
             resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
@@ -113,7 +113,7 @@ function checkDuplicates() {
             resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
         }
     } else {
-        resultElement.innerHTML = ""; // 裏A、裏B、裏C以外の選択がない場合、結果を空にする
+        resultElement.innerHTML = ""; // 裏A、裏B、裏Cのいずれかのボタンが選択されていない場合、結果を空にする
     }
 }
 
