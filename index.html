@@ -155,15 +155,17 @@
             const unwantedF3 = resultF3.match(/\d[a-z]/g) || [];
 
             let resultText = '';
+
+            // 「不要」文字の最初のものだけを使う
             if (unwantedD3.length > 0) {
-                resultText += `Dで${unwantedD3.join('と')}を解剖`;
+                resultText += `Dで${unwantedD3[0]}を解剖`;
             }
             if (unwantedE3.length > 0) {
                 if (resultText) resultText += '、';
-                resultText += `Eで${unwantedE3.join('と')}を解剖`;
+                resultText += `Eで${unwantedE3[0]}を解剖`;
             } else if (unwantedF3.length > 0) {
                 if (resultText) resultText += '、';
-                resultText += `Fで${unwantedF3.join('と')}を解剖`;
+                resultText += `Fで${unwantedF3[0]}を解剖`;
             }
 
             document.getElementById('result-Anatomy').innerText = resultText;
