@@ -8,6 +8,14 @@
         .selected {
             background-color: yellow;
         }
+        .num-set-button {
+            width: 60px; /* ボタンの幅を2倍に変更 */
+            height: 30px; /* ボタンの高さを2倍に変更 */
+            margin: 5px; /* ボタン間の余白を追加 */
+        }
+        #result {
+            margin-top: 10px;
+        }
         .duplicate {
             color: red;
         }
@@ -99,6 +107,13 @@
                 resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
             }
         }
+
+        function clearSelection() {
+            selectedNumberA = null;
+            selectedNumberB = null;
+            selectedNumberC = null;
+            updateSelection();
+        }
     </script>
 </head>
 <body>
@@ -122,6 +137,7 @@
             <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
             <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
         </div>
+        <button onclick="clearSelection()">入力クリア</button> <!-- 入力クリアボタンを追加 -->
     </div>
     <div id="result"></div>
 </body>
