@@ -5,170 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4th encounter solver</title>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // ボタンのクリック時の処理を追加
-        document.querySelectorAll('.num-set-button').forEach(function(button) {
-            button.addEventListener('click', function() {
-                toggleSelection(button);
-                updateCorrespondingSlot(button);
-                updateFilteredResults();
+        document.addEventListener("DOMContentLoaded", function() {
+            // ボタンのクリック時の処理を追加
+            document.querySelectorAll('.num-set-button').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    toggleSelection(button);
+                    updateCorrespondingSlot(button);
+                    updateFilteredResults();
+                });
             });
         });
-    });
     
-    // ボタンの選択状態を切り替える関数
-    function toggleSelection(button) {
-        const slot = button.closest('.slot');
-        // ボタンが属するスロットの全てのボタンからselectedクラスを削除
-        slot.querySelectorAll('.num-set-button').forEach(function(btn) {
-            if(btn !== button) {
-                btn.classList.remove('selected');
+        // ボタンの選択状態を切り替える関数
+        function toggleSelection(button) {
+            const slot = button.closest('.slot');
+            // ボタンが属するスロットの全てのボタンからselectedクラスを削除
+            slot.querySelectorAll('.num-set-button').forEach(function(btn) {
+                if (btn !== button) {
+                    btn.classList.remove('selected');
+                }
+            });
+    
+            // 選択されたボタンにselectedクラスを追加
+            button.classList.toggle('selected');
+        }
+    
+        // 対応するスロットの表記を更新する関数
+        function updateCorrespondingSlot(button) {
+            const slotClass = button.classList[1];
+            let resultText = '';
+            switch (button.innerText) {
+                case '球体':
+                    resultText = '(0, 0)';
+                    break;
+                case '立方体':
+                    resultText = '(4, 4)';
+                    break;
+                case '三角錐':
+                    resultText = '(3, 3)';
+                    break;
+                case '円柱':
+                    resultText = '(0, 4)';
+                    break;
+                case '円錐':
+                    resultText = '(0, 3)';
+                    break;
+                case '三角柱':
+                    resultText = '(3, 4)';
+                    break;
             }
-        });
-        
-        // 選択されたボタンにselectedクラスを追加
-        button.classList.toggle('selected');
-    }
-
-    // 対応するスロットの表記を更新する関数
-    function updateCorrespondingSlot(button) {
-        const slotClass = button.classList[1];
-        let resultText = '';
-        switch(button.innerText) {
-            case '球体':
-                resultText = '(0, 0)';
-                break;
-            case '立方体':
-                resultText = '(4, 4)';
-                break;
-            case '三角錐':
-                resultText = '(3, 3)';
-                break;
-            case '円柱':
-                resultText = '(0, 4)';
-                break;
-            case '円錐':
-                resultText = '(0, 3)';
-                break;
-            case '三角柱':
-                resultText = '(3, 4)';
-                break;
+    
+            if (slotClass.includes('num-set-button-D')) {
+                document.getElementById('result-D2').innerText = resultText;
+            } else if (slotClass.includes('num-set-button-E')) {
+                document.getElementById('result-E2').innerText = resultText;
+            } else if (slotClass.includes('num-set-button-F')) {
+                document.getElementById('result-F2').innerText = resultText;
+            }
         }
-        
-        if (slotClass.includes('num-set-button-D')) {
-            document.getElementById('result-D2').innerText = resultText;
-        } else if (slotClass.includes('num-set-button-E')) {
-            document.getElementById('result-E2').innerText = resultText;
-        } else if (slotClass.includes('num-set-button-F')) {
-            document.getElementById('result-F2').innerText = resultText;
+    
+        // 裏スロットの値を取得する関数
+        function getSelectedValue(slotClass) {
+            const selectedButton = document.querySelector(`.num-set-button-${slotClass}.selected`);
+            return selectedButton ? selectedButton.innerText : null;
         }
-    }   
-    // 裏スロットの値を取得する関数
-    function getSelectedValue(slotClass) {
-        const selectedButton = document.querySelector(`.num-set-button-${slotClass}.selected`);
-        return selectedButton ? selectedButton.innerText : null;
-    }
-
-    // 表スロットの対応を取得する関数
-    function getCorrespondingText(buttonText) {
-        switch(buttonText) {
-            case '球体': return '(0, 0)';
-            case '立方体': return '(4, 4)';
-            case '三角錐': return '(3, 3)';
-            case '円柱': return '(0, 4)';
-            case '円錐': return '(0, 3)';
-            case '三角柱': return '(3, 4)';
-            default: return '';
+    
+        // 表スロットの対応を取得する関数
+        function getCorrespondingText(buttonText) {
+            switch (buttonText) {
+                case '球体': return '(0, 0)';
+                case '立方体': return '(4, 4)';
+                case '三角錐': return '(3, 3)';
+                case '円柱': return '(0, 4)';
+                case '円錐': return '(0, 3)';
+                case '三角柱': return '(3, 4)';
+                default: return '';
+            }
         }
-    }
-
-    // フィルタリングされた結果を更新する関数
-    function updateFilteredResults() {
-        updateResultForSlot('A', 'result-D2', 'num-set-button-D');
-        updateResultForSlot('B', 'result-E2', 'num-set-button-E');
-        updateResultForSlot('C', 'result-F2', 'num-set-button-F');
-    }
-
-    // 指定されたスロットの結果を更新する関数
-    function updateResultForSlot(slotClass, resultId, buttonClass) {
-        const resultElement = document.getElementById(resultId);
-        const values = ['3', '4', '0'];
-        
-        const selectedValue = getSelectedValue(slotClass);
-        const filteredValues = values.filter(value => value !== selectedValue);
-        
-        const correspondingButton = document.querySelector(`.${buttonClass}.selected`);
-        const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
-        
-        const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
-        resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
-    }
-
-    function updateFilteredResults() {
-        updateResultForSlot('A', 'result-D2', 'num-set-button-D');
-        updateResultForSlot('B', 'result-E2', 'num-set-button-E');
-        updateResultForSlot('C', 'result-F2', 'num-set-button-F');
-
-        updateNeededAndUnneededNumbers('result-D2', 'result-D3');
-        updateNeededAndUnneededNumbers('result-E2', 'result-E3');
-        updateNeededAndUnneededNumbers('result-F2', 'result-F3');
-    }
-
-    // 指定されたスロットの結果を更新する関数
-    function updateResultForSlot(slotClass, resultId, buttonClass) {
-        const resultElement = document.getElementById(resultId);
-        const values = ['3', '4', '0'];
-        
-        const selectedValue = getSelectedValue(slotClass);
-        const filteredValues = values.filter(value => value !== selectedValue);
-        
-        const correspondingButton = document.querySelector(`.${buttonClass}.selected`);
-        const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
-        
-        const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
-        resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
-    }
-
-    // 表示されている2組の数字を比較して必要な数字と不要な数字を表示する関数
-    function updateNeededAndUnneededNumbers(resultId, targetId) {
-        const resultElement = document.getElementById(resultId).innerText;
-        const targetElement = document.getElementById(targetId);
-
-        const lines = resultElement.split('\n');
-        if (lines.length < 2) {
-            targetElement.innerText = '';
-            return;
+    
+        // フィルタリングされた結果を更新する関数
+        function updateFilteredResults() {
+            updateResultForSlot('A', 'result-D2', 'num-set-button-D');
+            updateResultForSlot('B', 'result-E2', 'num-set-button-E');
+            updateResultForSlot('C', 'result-F2', 'num-set-button-F');
+    
+            updateNeededAndUnneededNumbers('result-D2', 'result-D3');
+            updateNeededAndUnneededNumbers('result-E2', 'result-E3');
+            updateNeededAndUnneededNumbers('result-F2', 'result-F3');
         }
-
-        const [firstLine, secondLine] = lines;
-        const firstNumbers = firstLine.match(/\d/g).map(Number);
-        const secondNumbers = secondLine.match(/\d/g).map(Number);
-
-        const neededNumbers = secondNumbers.filter(num => !firstNumbers.includes(num));
-        const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
-
-        let resultText = '';
-        if (neededNumbers.length > 0) {
-            resultText += `${unneededNumbers.join('と')}が不要、${neededNumbers.join('と')}が必要`;
+    
+        // 指定されたスロットの結果を更新する関数
+        function updateResultForSlot(slotClass, resultId, buttonClass) {
+            const resultElement = document.getElementById(resultId);
+            const values = ['3', '4', '0'];
+    
+            const selectedValue = getSelectedValue(slotClass);
+            const filteredValues = values.filter(value => value !== selectedValue);
+    
+            const correspondingButton = document.querySelector(`.${buttonClass}.selected`);
+            const correspondingText = correspondingButton ? getCorrespondingText(correspondingButton.innerText) : '';
+    
+            const resultText = selectedValue ? `(${filteredValues[0]}, ${filteredValues[1]})` : '';
+            resultElement.innerText = correspondingText ? `${correspondingText}\n${resultText}` : resultText;
         }
-
-        targetElement.innerText = resultText;
-    }
-
-    // 入力をクリアする関数
-    function clearSelection() {
-        document.querySelectorAll('.selected').forEach(function(button) {
-            button.classList.remove('selected');
-        });
-        document.getElementById('result-D2').innerText = '';
-        document.getElementById('result-E2').innerText = '';
-        document.getElementById('result-F2').innerText = '';
-        document.getElementById('result-D3').innerText = '';
-        document.getElementById('result-E3').innerText = '';
-        document.getElementById('result-F3').innerText = '';
-    }
-
+    
+        // 表示されている2組の数字を比較して必要な数字と不要な数字を表示する関数
+        function updateNeededAndUnneededNumbers(resultId, targetId) {
+            const resultElement = document.getElementById(resultId).innerText;
+            const targetElement = document.getElementById(targetId);
+    
+            const lines = resultElement.split('\n');
+            if (lines.length < 2) {
+                targetElement.innerText = '';
+                return;
+            }
+    
+            const [firstLine, secondLine] = lines;
+            const firstNumbers = firstLine.match(/\d/g).map(Number);
+            const secondNumbers = secondLine.match(/\d/g).map(Number);
+    
+            const neededNumbers = secondNumbers.filter(num => !firstNumbers.includes(num));
+            const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
+    
+            let resultText = '';
+            if (neededNumbers.length > 0 || unneededNumbers.length > 0) {
+                resultText += `${unneededNumbers.join('と')}が不要、${neededNumbers.join('と')}が必要`;
+            }
+    
+            targetElement.innerText = resultText;
+        }
+    
+        // 入力をクリアする関数
+        function clearSelection() {
+            document.querySelectorAll('.selected').forEach(function(button) {
+                button.classList.remove('selected');
+            });
+            document.getElementById('result-D2').innerText = '';
+            document.getElementById('result-E2').innerText = '';
+            document.getElementById('result-F2').innerText = '';
+            document.getElementById('result-D3').innerText = '';
+            document.getElementById('result-E3').innerText = '';
+            document.getElementById('result-F3').innerText = '';
+        }
     </script>
+    
     <style>
         h2 {
             font-size: 18px;
