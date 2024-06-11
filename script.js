@@ -51,7 +51,15 @@ function updateSelection() {
             button.classList.remove('selected');
         }
     });
-    
+    var allButtonsD = document.querySelectorAll('.num-set-button-D');
+    allButtonsD.forEach(function(button) {
+        var shape = button.innerText;
+        if (shape === selectedShapeD) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
+    });
     if (selectedShapeD !== null) {
         let resultDText = '';
         switch (selectedShapeD) {
