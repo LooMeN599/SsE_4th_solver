@@ -149,100 +149,25 @@
         const resultD3 = document.getElementById('result-D3').innerText;
         const resultE3 = document.getElementById('result-E3').innerText;
         const resultF3 = document.getElementById('result-F3').innerText;
-        const selectedValueA = getSelectedValue('A');
-        const values = {
-            '▲': '3a',
-            '■': '4a',
-            '●': '0a'
-        };
 
         // 表D3スロットで「Xが不要」と表示されている文字Xを参照
         const unwantedX = (resultD3.match(/(\d[a-z])が不要/) || [])[1];
-
-        // 表E3スロットまたは表F3スロットで「不要」とされた文字を参照
-        const unwantedE3 = (resultE3.match(/(\d[a-z])が不要/) || []);
-        const unwantedF3 = (resultF3.match(/(\d[a-z])が不要/) || []);
         
-        // 裏Aで選択されていないボタンに対応する文字と一致するものをYとして参照
-        const selectedValueAText = values[selectedValueA];
-        let unwantedY = '';
-        if (unwantedE3.length > 0 && unwantedE3.includes(selectedValueAText) === false) {
-            unwantedY = unwantedE3[1];
-        } else if (unwantedF3.length > 0 && unwantedF3.includes(selectedValueAText) === false) {
-            unwantedY = unwantedF3[1];
-        }
+        // 表D3スロットで「Yが必要」と表示されている文字Yを参照
+        const neededY = (resultD3.match(/(\d[a-z])が必要/) || [])[1];
 
         let resultText = '';
-        if (unwantedX && unwantedY) {
-            if (unwantedE3.includes(unwantedY)) {
-                resultText = `Dで${unwantedX}を解剖し、Eで${unwantedY}を解剖`;
-            } else if (unwantedF3.includes(unwantedY)) {
-                resultText = `Dで${unwantedX}を解剖し、Fで${unwantedY}を解剖`;
+        if (unwantedX && neededY) {
+            if (resultE3.includes(neededY)) {
+                resultText = `Dで${unwantedX}を解剖し、Eで${neededY}を解剖`;
+            } else if (resultF3.includes(neededY)) {
+                resultText = `Dで${unwantedX}を解剖し、Fで${neededY}を解剖`;
             }
         }
 
         document.getElementById('result-Anatomy').innerText = resultText;
     }
 
-    // D4スロットを更新する関数
-    function updateResultForD4() {
-        const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
-        const anatomyResult = document.getElementById('result-Anatomy').innerText;
-        if (!selectedButtonD1) return;
-
-        let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
-        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、[EF]で(\d[a-z])を解剖/);
-
-        if (match) {
-            const unwantedX = match[1];
-            const neededY = match[2];
-            
-            if (firstPart === unwantedX) firstPart = neededY;
-            else if (secondPart === unwantedX) secondPart = neededY;
-        }
-
-        document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
-    }
-
-    // E4スロットを更新する関数
-    function updateResultForE4() {
-        const selectedButtonE1 = document.querySelector('.num-set-button-E.selected');
-        const anatomyResult = document.getElementById('result-Anatomy').innerText;
-        if (!selectedButtonE1) return;
-
-        let [firstPart, secondPart] = getCorrespondingText(selectedButtonE1.innerText).match(/\d[a-z]/g);
-        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Eで(\d[a-z])を解剖/);
-
-        if (match) {
-            const neededY = match[2];
-            const unwantedX = match[1];
-
-            if (firstPart === neededY) firstPart = unwantedX;
-            else if (secondPart === neededY) secondPart = unwantedX;
-        }
-
-        document.getElementById('result-E4').innerText = `(${firstPart}, ${secondPart})`;
-    }
-
-    // F4スロットを更新する関数
-    function updateResultForF4() {
-        const selectedButtonF1 = document.querySelector('.num-set-button-F.selected');
-        const anatomyResult = document.getElementById('result-Anatomy').innerText;
-        if (!selectedButtonF1) return;
-
-        let [firstPart, secondPart] = getCorrespondingText(selectedButtonF1.innerText).match(/\d[a-z]/g);
-        const match = anatomyResult.match(/Dで(\d[a-z])を解剖、Fで(\d[a-z])を解剖/);
-
-        if (match) {
-            const neededY = match[2];
-            const unwantedX = match[1];
-
-            if (firstPart === neededY) firstPart = unwantedX;
-            else if (secondPart === neededY) secondPart = unwantedX;
-        }
-
-        document.getElementById('result-F4').innerText = `(${firstPart}, ${secondPart})`;
-    }
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
