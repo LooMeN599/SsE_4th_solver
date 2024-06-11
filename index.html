@@ -25,6 +25,8 @@
     </style>
     <script>
         var selectedNumberA = null;
+        var selectedNumberB = null;
+        var selectedNumberC = null;
 
         function toggleSelectionA(number) {
             if (selectedNumberA === number) {
@@ -35,8 +37,6 @@
             updateSelection();
         }
 
-        var selectedNumberB = null;
-
         function toggleSelectionB(number) {
             if (selectedNumberB === number) {
                 selectedNumberB = null;
@@ -45,8 +45,6 @@
             }
             updateSelection();
         }
-
-        var selectedNumberC = null;
 
         function toggleSelectionC(number) {
             if (selectedNumberC === number) {
@@ -108,11 +106,111 @@
             }
         }
 
+        var selectedNumbersD = [];
+        var selectedNumbersE = [];
+        var selectedNumbersF = [];
+
+        function toggleSelectionD(number) {
+            var index = selectedNumbersD.indexOf(number);
+            if (index === -1) {
+                selectedNumbersD.push(number);
+            } else {
+                selectedNumbersD.splice(index, 1);
+            }
+            updateSelectionD();
+        }
+
+        function toggleSelectionE(number) {
+            var index = selectedNumbersE.indexOf(number);
+            if (index === -1) {
+                selectedNumbersE.push(number);
+            } else {
+                selectedNumbersE.splice(index, 1);
+            }
+            updateSelectionE();
+        }
+
+        function toggleSelectionF(number) {
+            var index = selectedNumbersF.indexOf(number);
+            if (index === -1) {
+                selectedNumbersF.push(number);
+            } else {
+                selectedNumbersF.splice(index, 1);
+            }
+            updateSelectionF();
+        }
+
+        function updateSelectionD() {
+            var allButtonsD = document.querySelectorAll('.num-set-button-D');
+            allButtonsD.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (selectedNumbersD.includes(number)) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+        }
+
+        function updateSelectionE() {
+            var allButtonsE = document.querySelectorAll('.num-set-button-E');
+            allButtonsE.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (selectedNumbersE.includes(number)) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+        }
+
+        function updateSelectionF() {
+            var allButtonsF = document.querySelectorAll('.num-set-button-F');
+            allButtonsF.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (selectedNumbersF.includes(number)) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+        }
+
+        function checkDuplicatesD() {
+            var resultElement = document.getElementById('resultD');
+            var allSelectedNumbers = selectedNumbersD.concat(selectedNumbersE, selectedNumbersF);
+            var uniqueNumbers = [...new Set(allSelectedNumbers)];
+            if (uniqueNumbers.length < allSelectedNumbers.length) {
+                resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+            } else {
+                resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+            }
+        }
+
+        function calculateEquation() {
+            var resultElementD = document.getElementById('resultD');
+            var resultElementE = document.getElementById('resultE');
+            var resultElementF = document.getElementById('resultF');
+
+            var d = selectedNumbersD[0] + "+" + selectedNumbersD[1];
+            var e = selectedNumbersE[0] + "+" + selectedNumbersE[1];
+            var f = selectedNumbersF[0] + "+" + selectedNumbersF[1];
+
+            resultElementD.innerText = "表D1: " + d;
+            resultElementE.innerText = "表E1: " + e;
+            resultElementF.innerText = "表F1: " + f;
+        }
+
         function clearSelection() {
-            selectedNumberA = null;
-            selectedNumberB = null;
-            selectedNumberC = null;
-            updateSelection();
+            selectedNumbersD = [];
+            selectedNumbersE = [];
+            selectedNumbersF = [];
+            updateSelectionD();
+            updateSelectionE();
+            updateSelectionF();
+            document.getElementById('resultD').innerText = "";
+            document.getElementById('resultE').innerText = "";
+            document.getElementById('resultF').innerText = "";
         }
     </script>
 </head>
@@ -120,25 +218,51 @@
     <h1>4th encounter solver</h1>
     <div>
         <div>
-            <h2 style="display: inline;">裏A：</h2> <!-- 改行しないように修正 -->
-            <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
-            <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
-            <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
-        </div>
-        <div>
-            <h2 style="display: inline;">裏B：</h2> <!-- 改行しないように修正 -->
-            <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
-            <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
-            <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
-        </div>
-        <div>
-            <h2 style="display: inline;">裏C：</h2> <!-- 改行しないように修正 -->
-            <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
-            <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
-            <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
-        </div>
-        <div id="result"></div> <!-- 入力クリアボタンより上に結果表示を移動 -->
-        <button onclick="clearSelection()">入力クリア</button> <!-- 入力クリアボタンを追加 -->
-    </div>
-</body>
-</html>
+            <h2 style="display: inline;">裏A：</h2>
+            <div>
+                <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
+                <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
+                <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
+            </div>
+            <div>
+                <h2 style="display: inline;">裏B：</h2>
+                <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
+                <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
+                <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
+            </div>
+            <div>
+                <h2 style="display: inline;">裏C：</h2>
+                <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
+                <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
+                <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
+            </div>
+            <div>
+                <div>
+                    <h2 style="display: inline;">表D1：</h2>
+                    <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
+                    <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
+                    <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
+                </div>
+                <div>
+                    <h2 style="display: inline;">表E1：</h2>
+                    <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
+                    <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
+                    <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
+                </div>
+                <div>
+                    <h2 style="display: inline;">表F1：</h2>
+                    <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
+                    <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
+                    <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
+                </div>
+            </div>
+            <button onclick="calculateEquation()">計算する</button>
+            <button onclick="clearSelection()">入力クリア</button>
+            </div>
+            <div id="result"></div>
+            <div id="resultD"></div>
+            <div id="resultE"></div>
+            <div id="resultF"></div>
+            </body>
+            </html>
+            
