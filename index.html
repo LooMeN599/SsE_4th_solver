@@ -8,69 +8,74 @@
     <script src="script.js" defer></script>
     <style>
         h2 {
-            font-size: 18px; /* スロット名の文字サイズを指定 */
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .slot {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* スロット間の余白を追加 */
         }
     </style>
 </head>
 <body>
     <h1>4th encounter solver</h1>
     <div>
-        <div>
-            <h2 style="display: inline;">裏A：</h2>
+        <div class="slot">
+            <h2>裏A：</h2>
             <div>
                 <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
                 <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
                 <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
             </div>
-            <div>
-                <h2 style="display: inline;">裏B：</h2>
-                <div>
-                    <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
-                    <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
-                    <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
-                </div>
-            </div>
-            <div>
-                <h2 style="display: inline;">裏C：</h2>
-                <div>
-                    <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
-                    <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
-                    <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <h2 style="display: inline;">表D1：</h2>
-                    <div>
-                        <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
-                        <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
-                        <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
-                    </div>
-                </div>
-                <div>
-                    <h2 style="display: inline;">表E1：</h2>
-                    <div>
-                        <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
-                        <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
-                        <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
-                    </div>
-                </div>
-                <div>
-                    <h2 style="display: inline;">表F1：</h2>
-                    <div>
-                        <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
-                        <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
-                        <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
-                    </div>
-                </div>
-            </div>
-            <button onclick="calculateEquation()">計算する</button>
-            <button onclick="clearSelection()">入力クリア</button>
         </div>
-        <div id="result"></div>
-        <div id="resultD"></div>
-        <div id="resultE"></div>
-        <div id="resultF"></div>
+        <div class="slot">
+            <h2>裏B：</h2>
+            <div>
+                <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
+                <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
+                <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
+            </div>
+        </div>
+        <div class="slot">
+            <h2>裏C：</h2>
+            <div>
+                <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
+                <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
+                <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
+            </div>
+        </div>
+        <div class="slot">
+            <h2>表D1：</h2>
+            <div>
+                <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
+                <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
+                <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
+            </div>
+        </div>
+        <div class="slot">
+            <h2>表E1：</h2>
+            <div>
+                <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
+                <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
+                <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
+            </div>
+        </div>
+        <div class="slot">
+            <h2>表F1：</h2>
+            <div>
+                <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
+                <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
+                <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
+            </div>
+        </div>
+        <button onclick="calculateEquation()">計算する</button>
+        <button onclick="clearSelection()">入力クリア</button>
     </div>
+    <div id="result"></div>
+    <div id="resultD"></div>
+    <div id="resultE"></div>
+    <div id="resultF"></div>
 </body>
 </html>
