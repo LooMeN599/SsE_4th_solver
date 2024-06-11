@@ -59,21 +59,6 @@ function highlightSelectedButtons() {
     });
 }
 
-// ボタンの選択をトグルする関数
-function toggleSelection(slot, button) {
-    // 同じスロット内の選択済みボタンをクリア
-    clearSelectedButton(slot);
-    // 選択されたボタンを更新
-    selectedButtons[slot] = button;
-    // 選択されたボタンをハイライト
-    highlightSelectedButtons();
-}
-
-// 同じスロット内の選択済みボタンをクリアする関数
-function clearSelectedButton(slot) {
-    selectedButtons[slot] = null;
-}
-
 // 入力クリアボタンのクリック時の処理
 function clearSelection() {
     Object.keys(selectedButtons).forEach(function(slot) {
