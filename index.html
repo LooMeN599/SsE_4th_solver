@@ -8,9 +8,6 @@
         .selected {
             background-color: yellow;
         }
-        #result {
-            margin-top: 10px;
-        }
         .duplicate {
             color: red;
         }
@@ -19,63 +16,87 @@
         }
     </style>
     <script>
-        var selectedNumbersA = [];
+        var selectedNumberA = null;
 
         function toggleSelectionA(number) {
-            var selectedButton = document.getElementById('num-set-A-' + number);
-            var index = selectedNumbersA.indexOf(number);
-            if (index === -1) {
-                selectedNumbersA.push(number);
-                selectedButton.classList.add('selected');
+            if (selectedNumberA === number) {
+                selectedNumberA = null;
             } else {
-                selectedNumbersA.splice(index, 1);
-                selectedButton.classList.remove('selected');
+                selectedNumberA = number;
             }
-            checkDuplicates();
+            updateSelection();
         }
 
-        var selectedNumbersB = [];
+        var selectedNumberB = null;
 
         function toggleSelectionB(number) {
-            var selectedButton = document.getElementById('num-set-B-' + number);
-            var index = selectedNumbersB.indexOf(number);
-            if (index === -1) {
-                selectedNumbersB.push(number);
-                selectedButton.classList.add('selected');
+            if (selectedNumberB === number) {
+                selectedNumberB = null;
             } else {
-                selectedNumbersB.splice(index, 1);
-                selectedButton.classList.remove('selected');
+                selectedNumberB = number;
             }
-            checkDuplicates();
+            updateSelection();
         }
 
-        var selectedNumbersC = [];
+        var selectedNumberC = null;
 
         function toggleSelectionC(number) {
-            var selectedButton = document.getElementById('num-set-C-' + number);
-            var index = selectedNumbersC.indexOf(number);
-            if (index === -1) {
-                selectedNumbersC.push(number);
-                selectedButton.classList.add('selected');
+            if (selectedNumberC === number) {
+                selectedNumberC = null;
             } else {
-                selectedNumbersC.splice(index, 1);
-                selectedButton.classList.remove('selected');
+                selectedNumberC = number;
             }
+            updateSelection();
+        }
+
+        function updateSelection() {
+            var allButtonsA = document.querySelectorAll('.num-set-button-A');
+            allButtonsA.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (number === selectedNumberA) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+            var allButtonsB = document.querySelectorAll('.num-set-button-B');
+            allButtonsB.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (number === selectedNumberB) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+            var allButtonsC = document.querySelectorAll('.num-set-button-C');
+            allButtonsC.forEach(function(button) {
+                var number = parseInt(button.innerText);
+                if (number === selectedNumberC) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
             checkDuplicates();
         }
 
         function checkDuplicates() {
             var resultElement = document.getElementById('result');
-            var allSelectedNumbers = selectedNumbersA.concat(selectedNumbersB, selectedNumbersC);
-            if (allSelectedNumbers.length !== 9) {
-                resultElement.innerHTML = "<span class='duplicate'>3つの数字を選択してください</span>";
+            var allSelectedNumbers = [];
+            if (selectedNumberA !== null) {
+                allSelectedNumbers.push(selectedNumberA);
+            }
+            if (selectedNumberB !== null) {
+                allSelectedNumbers.push(selectedNumberB);
+            }
+            if (selectedNumberC !== null) {
+                allSelectedNumbers.push(selectedNumberC);
+            }
+            var uniqueNumbers = [...new Set(allSelectedNumbers)];
+            if (uniqueNumbers.length < allSelectedNumbers.length) {
+                resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
             } else {
-                var uniqueNumbers = [...new Set(allSelectedNumbers)];
-                if (uniqueNumbers.length < allSelectedNumbers.length) {
-                    resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
-                } else {
-                    resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
-                }
+                resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
             }
         }
     </script>
@@ -85,21 +106,21 @@
     <div>
         <div>
             <h2>裏A：</h2>
-            <button id="num-set-A-3" onclick="toggleSelectionA(3)">3</button>
-            <button id="num-set-A-4" onclick="toggleSelectionA(4)">4</button>
-            <button id="num-set-A-0" onclick="toggleSelectionA(0)">0</button>
+            <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
+            <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
+            <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
         </div>
         <div>
             <h2>裏B：</h2>
-            <button id="num-set-B-3" onclick="toggleSelectionB(3)">3</button>
-            <button id="num-set-B-4" onclick="toggleSelectionB(4)">4</button>
-            <button id="num-set-B-0" onclick="toggleSelectionB(0)">0</button>
+            <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
+            <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
+            <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
         </div>
         <div>
             <h2>裏C：</h2>
-            <button id="num-set-C-3" onclick="toggleSelectionC(3)">3</button>
-            <button id="num-set-C-4" onclick="toggleSelectionC(4)">4</button>
-            <button id="num-set-C-0" onclick="toggleSelectionC(0)">0</button>
+            <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
+            <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
+            <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
         </div>
     </div>
     <div id="result"></div>
