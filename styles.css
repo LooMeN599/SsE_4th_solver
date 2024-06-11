@@ -1,0 +1,19 @@
+.selected {
+    background-color: rgb(0, 153, 255);
+}
+.num-set-button {
+    width: 120px; /* ボタンの幅を変更 */
+    height: 50px; /* ボタンの高さを変更 */
+    margin: 10px; /* ボタン間の余白を追加 */
+    font-size: 18px; /* ボタンの文字サイズを変更 */
+}
+#result {
+    margin-top: 20px;
+    font-size: 16px; /* 結果表示の文字サイズを変更 */
+}
+.duplicate {
+    color: red;
+}
+.noduplicate {
+    color: black;
+}
