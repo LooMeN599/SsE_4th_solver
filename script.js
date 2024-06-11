@@ -2,52 +2,80 @@ var selectedNumberA = null;
 var selectedNumberB = null;
 var selectedNumberC = null;
 var selectedShapeD = null;
-var selectedNumbersE = [];
-var selectedNumbersF = [];
+var selectedShapeE = null;
+var selectedShapeF = null;
 
-function toggleSelection(type, value) {
-    switch (type) {
-        case 'A':
-            selectedNumberA = value;
-            break;
-        case 'B':
-            selectedNumberB = value;
-            break;
-        case 'C':
-            selectedNumberC = value;
-            break;
-        case 'D':
-            selectedShapeD = value;
-            break;
+function toggleSelectionA(number) {
+    selectedNumberA = number;
+    checkDuplicates(); // 重複チェックを追加
+    updateSelection();
     }
+
+function toggleSelectionB(number) {
+    selectedNumberB = number;
+    checkDuplicates(); // 重複チェックを追加
+    updateSelection();
+    }
+
+function toggleSelectionC(number) {
+    selectedNumberC = number;
+    checkDuplicates(); // 重複チェックを追加
+    updateSelection();
+    }
+
+function toggleSelectionD(shape) {
+    selectedShapeD = shape;
     updateSelection();
 }
+
+function toggleSelectionE(shape) {
+    selectedShapeE = shape;
+    updateSelection();
+}
+
+function toggleSelectionF(shape) {
+    selectedShapeF = shape;
+    updateSelection();
+}
+
 
 function updateSelection() {
     var allButtonsA = document.querySelectorAll('.num-set-button-A');
     allButtonsA.forEach(function(button) {
         var number = parseInt(button.innerText);
-        button.classList.toggle('selected', number === selectedNumberA);
+        if (number === selectedNumberA) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
     });
-    
     var allButtonsB = document.querySelectorAll('.num-set-button-B');
     allButtonsB.forEach(function(button) {
         var number = parseInt(button.innerText);
-        button.classList.toggle('selected', number === selectedNumberB);
+        if (number === selectedNumberB) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
     });
-    
     var allButtonsC = document.querySelectorAll('.num-set-button-C');
     allButtonsC.forEach(function(button) {
         var number = parseInt(button.innerText);
-        button.classList.toggle('selected', number === selectedNumberC);
+        if (number === selectedNumberC) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
     });
-    
     var allButtonsD = document.querySelectorAll('.num-set-button-D');
     allButtonsD.forEach(function(button) {
         var shape = button.innerText;
-        button.classList.toggle('selected', shape === selectedShapeD);
+        if (shape === selectedShapeD) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
     });
-
     if (selectedShapeD !== null) {
         let resultDText = '';
         switch (selectedShapeD) {
@@ -71,13 +99,73 @@ function updateSelection() {
                 break;
         }
         document.getElementById("resultD").innerText = resultDText;
-    }
-    
-    var hasAtLeastOneSelection = selectedNumberA !== null || selectedNumberB !== null || selectedNumberC !== null;
-    
-    if (hasAtLeastOneSelection) {
-        checkDuplicates();
-    }
+    };
+    var allButtonsE = document.querySelectorAll('.num-set-button-E');
+    allButtonsE.forEach(function(button) {
+        var shape = button.innerText;
+        if (shape === selectedShapeE) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
+    });
+    if (selectedShapeE !== null) {
+        let resultDText = '';
+        switch (selectedShapeE) {
+            case '球体':
+                resultEText = "球体：0+0";
+                break;
+            case '立方体':
+                resultEText = "立方体：4+4";
+                break;
+            case '三角錐':
+                resultEText = "三角錐：3+3";
+                break;
+            case '円柱':
+                resultEText = "円柱：0+4";
+                break;
+            case '円錐':
+                resultEText = "円錐：0+3";
+                break;
+            case '三角柱':
+                resultEText = "三角柱：3+4";
+                break;
+        }
+        document.getElementById("resultE").innerText = resultEText;
+    };
+    var allButtonsF = document.querySelectorAll('.num-set-button-F');
+    allButtonsF.forEach(function(button) {
+        var shape = button.innerText;
+        if (shape === selectedShapeF) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
+    });
+    if (selectedShapeF !== null) {
+        let resultFText = '';
+        switch (selectedShapeF) {
+            case '球体':
+                resultFText = "球体：0+0";
+                break;
+            case '立方体':
+                resultFText = "立方体：4+4";
+                break;
+            case '三角錐':
+                resultFText = "三角錐：3+3";
+                break;
+            case '円柱':
+                resultFText = "円柱：0+4";
+                break;
+            case '円錐':
+                resultFText = "円錐：0+3";
+                break;
+            case '三角柱':
+                resultFText = "三角柱：3+4";
+                break;
+        }
+        document.getElementById("resultF").innerText = resultFText;
+
 }
 
 function checkDuplicates() {
@@ -92,84 +180,22 @@ function checkDuplicates() {
     if (selectedNumberC !== null) {
         allSelectedNumbers.push(selectedNumberC);
     }
-    
+
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されているかどうかをチェック
     var hasAtLeastOneSelection = selectedNumberA !== null || selectedNumberB !== null || selectedNumberC !== null;
 
+    // 裏A、裏B、裏Cのいずれかのボタンが選択されている場合のみ、重複チェックを実行
     if (hasAtLeastOneSelection) {
         var uniqueNumbers = [...new Set(allSelectedNumbers)];
-        resultElement.innerHTML = uniqueNumbers.length < allSelectedNumbers.length ?
-            "<span class='duplicate'>重複あり</span>" :
-            "<span class='noduplicate'>重複なし</span>";
+        if (uniqueNumbers.length < allSelectedNumbers.length) {
+            resultElement.innerHTML = "<span class='duplicate'>重複あり</span>";
+        } else {
+            resultElement.innerHTML = "<span class='noduplicate'>重複なし</span>";
+        }
     } else {
-        resultElement.innerHTML = "";
+        resultElement.innerHTML = ""; // 裏A、裏B、裏Cのいずれかのボタンが選択されていない場合、結果を空にする
     }
 }
-
-function toggleSelectionE(number) {
-    var index = selectedNumbersE.indexOf(number);
-    if (index === -1) {
-        selectedNumbersE.push(number);
-    } else {
-        selectedNumbersE.splice(index, 1);
-    }
-    updateSelectionE();
-    checkDuplicatesE();
-}
-
-function toggleSelectionF(number) {
-    var index = selectedNumbersF.indexOf(number);
-    if (index === -1) {
-        selectedNumbersF.push(number);
-    } else {
-        selectedNumbersF.splice(index, 1);
-    }
-    updateSelectionF();
-    checkDuplicatesF();
-}
-
-function updateSelectionE() {
-    updateSelectionHelper('.num-set-button-E', selectedNumbersE);
-}
-
-function updateSelectionF() {
-    updateSelectionHelper('.num-set-button-F', selectedNumbersF);
-}
-
-function updateSelectionHelper(selector, selectedNumbers) {
-    var allButtons = document.querySelectorAll(selector);
-    allButtons.forEach(function(button) {
-        var number = parseInt(button.innerText);
-        button.classList.toggle('selected', selectedNumbers.includes(number));
-    });
-}
-
-function checkDuplicatesE() {
-    checkDuplicatesHelper(selectedNumbersE, 'resultE');
-}
-
-function checkDuplicatesF() {
-    checkDuplicatesHelper(selectedNumbersF, 'resultF');
-}
-
-function checkDuplicatesHelper(selectedNumbers, resultElementId) {
-    var resultElement = document.getElementById(resultElementId);
-    var uniqueNumbers = [...new Set(selectedNumbers)];
-    resultElement.innerHTML = uniqueNumbers.length < selectedNumbers.length ?
-        "<span class='duplicate'>重複あり</span>" :
-        "<span class='noduplicate'>重複なし</span>";
-}
-
-function calculateEquation() {
-    var resultElementE = document.getElementById('resultE');
-    var resultElementF = document.getElementById('resultF');
-
-    var e = selectedNumbersE[0] + "+" + selectedNumbersE[1];
-    var f = selectedNumbersF[0] + "+" + selectedNumbersF[1];
-
-    resultElementE.innerText = "表E1: " + e;
-    resultElementF.innerText = "表F1: " + f;
-}
-
 function clearSelection() {
     selectedNumberA = null;
     selectedNumberB = null;
