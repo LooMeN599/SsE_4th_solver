@@ -3,30 +3,25 @@ var selectedNumberB = null;
 var selectedNumberC = null;
 
 function toggleSelectionA(number) {
-    if (selectedNumberA === number) {
-        selectedNumberA = null;
-    } else {
-        selectedNumberA = number;
-    }
+    selectedNumberA = number;
     updateSelection();
 }
 
 function toggleSelectionB(number) {
-    if (selectedNumberB === number) {
-        selectedNumberB = null;
-    } else {
-        selectedNumberB = number;
-    }
+    selectedNumberB = number;
     updateSelection();
 }
 
 function toggleSelectionC(number) {
-    if (selectedNumberC === number) {
-        selectedNumberC = null;
-    } else {
-        selectedNumberC = number;
-    }
+    selectedNumberC = number;
     updateSelection();
+}
+
+function updateSelection() {
+    document.getElementById("selectedNumberA").innerText = selectedNumberA !== null ? "：" + selectedNumberA : "";
+    document.getElementById("selectedNumberB").innerText = selectedNumberB !== null ? "：" + selectedNumberB : "";
+    document.getElementById("selectedNumberC").innerText = selectedNumberC !== null ? "：" + selectedNumberC : "";
+    // 他のスロットについても同様の処理を行う
 }
 
 function updateSelection() {

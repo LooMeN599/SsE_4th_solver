@@ -16,41 +16,52 @@
     <h1>4th encounter solver</h1>
     <div>
         <div>
-            <h2 style="display: inline;">裏A：</h2><div> <!-- 不要な改行を削除 -->
+            <h2 style="display: inline;">裏A：</h2><span id="selectedNumberA"></span> <!-- 不要な改行を削除 -->
+            <div>
                 <button class="num-set-button-A" onclick="toggleSelectionA(3)">3</button>
                 <button class="num-set-button-A" onclick="toggleSelectionA(4)">4</button>
                 <button class="num-set-button-A" onclick="toggleSelectionA(0)">0</button>
             </div>
             <div>
-                <h2 style="display: inline;">裏B：</h2><div> <!-- 不要な改行を削除 -->
-                <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
-                <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
-                <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
+                <h2 style="display: inline;">裏B：</h2><span id="selectedNumberB"></span> <!-- 不要な改行を削除 -->
+                <div>
+                    <button class="num-set-button-B" onclick="toggleSelectionB(3)">3</button>
+                    <button class="num-set-button-B" onclick="toggleSelectionB(4)">4</button>
+                    <button class="num-set-button-B" onclick="toggleSelectionB(0)">0</button>
+                </div>
             </div>
             <div>
-                <h2 style="display: inline;">裏C：</h2><div> <!-- 不要な改行を削除 -->
-                <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
-                <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
-                <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
+                <h2 style="display: inline;">裏C：</h2><span id="selectedNumberC"></span> <!-- 不要な改行を削除 -->
+                <div>
+                    <button class="num-set-button-C" onclick="toggleSelectionC(3)">3</button>
+                    <button class="num-set-button-C" onclick="toggleSelectionC(4)">4</button>
+                    <button class="num-set-button-C" onclick="toggleSelectionC(0)">0</button>
+                </div>
             </div>
             <div>
                 <div>
-                    <h2 style="display: inline;">表D1：</h2><div> <!-- 不要な改行を削除 -->
-                    <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
-                    <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
-                    <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
+                    <h2 style="display: inline;">表D1：</h2><span id="selectedNumbersD"></span> <!-- 不要な改行を削除 -->
+                    <div>
+                        <button class="num-set-button-D" onclick="toggleSelectionD(3)">3</button>
+                        <button class="num-set-button-D" onclick="toggleSelectionD(4)">4</button>
+                        <button class="num-set-button-D" onclick="toggleSelectionD(0)">0</button>
+                    </div>
                 </div>
                 <div>
-                    <h2 style="display: inline;">表E1：</h2><div> <!-- 不要な改行を削除 -->
-                    <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
-                    <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
-                    <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
+                    <h2 style="display: inline;">表E1：</h2><span id="selectedNumbersE"></span> <!-- 不要な改行を削除 -->
+                    <div>
+                        <button class="num-set-button-E" onclick="toggleSelectionE(3)">3</button>
+                        <button class="num-set-button-E" onclick="toggleSelectionE(4)">4</button>
+                        <button class="num-set-button-E" onclick="toggleSelectionE(0)">0</button>
+                    </div>
                 </div>
                 <div>
-                    <h2 style="display: inline;">表F1：</h2><div> <!-- 不要な改行を削除 -->
-                    <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
-                    <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
-                    <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
+                    <h2 style="display: inline;">表F1：</h2><span id="selectedNumbersF"></span> <!-- 不要な改行を削除 -->
+                    <div>
+                        <button class="num-set-button-F" onclick="toggleSelectionF(3)">3</button>
+                        <button class="num-set-button-F" onclick="toggleSelectionF(4)">4</button>
+                        <button class="num-set-button-F" onclick="toggleSelectionF(0)">0</button>
+                    </div>
                 </div>
             </div>
             <button onclick="calculateEquation()">計算する</button>
