@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4th encounter solver</title>
     <script>
-         document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
         // ボタンのクリック時の処理を追加
         document.querySelectorAll('.num-set-button').forEach(function(button) {
             button.addEventListener('click', function() {
                 toggleSelection(button);
                 updateCorrespondingSlot(button);
+                updateResultD2();
             });
         });
     });
@@ -72,6 +73,35 @@
         document.getElementById('result-E2').innerText = '';
         document.getElementById('result-F2').innerText = '';
     }
+     // 裏スロットの値を取得する関数
+     function getSelectedValue(slotClass) {
+        const selectedButton = document.querySelector(`.num-set-button-${slotClass}.selected`);
+        return selectedButton ? selectedButton.innerText : null;
+    }
+
+    // 表D2のスロットを更新する関数
+    function updateResultD2() {
+        const resultD2Element = document.getElementById('result-D2');
+        const valuesA = ['3', '4', '0'];
+        const valuesB = ['3', '4', '0'];
+        const valuesC = ['3', '4', '0'];
+        
+        const selectedA = getSelectedValue('A');
+        const selectedB = getSelectedValue('B');
+        const selectedC = getSelectedValue('C');
+        
+        const filteredA = valuesA.filter(value => value !== selectedA);
+        const filteredB = valuesB.filter(value => value !== selectedB);
+        const filteredC = valuesC.filter(value => value !== selectedC);
+        
+        const resultTextA = selectedA ? `(${filteredA[0]}, ${filteredA[1]})` : '';
+        const resultTextB = selectedB ? `(${filteredB[0]}, ${filteredB[1]})` : '';
+        const resultTextC = selectedC ? `(${filteredC[0]}, ${filteredC[1]})` : '';
+        
+        resultD2Element.innerHTML = `${resultD2Element.innerText}<br>${resultTextA}<br>${resultTextB}<br>${resultTextC}`;
+    }
+    
+    
     </script>
     <style>
         h2 {
