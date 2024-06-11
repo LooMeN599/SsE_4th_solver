@@ -170,6 +170,29 @@
         document.getElementById('result-Anatomy').innerText = resultText;
     }
 
+    // D4スロットを更新する関数
+    function updateResultForD4() {
+        const selectedButtonD1 = document.querySelector('.num-set-button-D.selected');
+        const anatomyResult = document.getElementById('result-Anatomy').innerText;
+        if (!selectedButtonD1) return;
+
+        let [firstPart, secondPart] = getCorrespondingText(selectedButtonD1.innerText).match(/\d[a-z]/g);
+        firstPart = normalize(firstPart);
+        secondPart = normalize(secondPart);
+
+        const match = anatomyResult.match(/Dで(\d)を解剖し、[EF]で(\d)を解剖/);
+
+        if (match) {
+            const unwantedX = match[1];
+            const neededY = match[2];
+            
+            if (firstPart === unwantedX) firstPart = neededY;
+            else if (secondPart === unwantedX) secondPart = neededY;
+        }
+
+        document.getElementById('result-D4').innerText = `(${firstPart}, ${secondPart})`;
+    }
+
     // 0aと0bを0に、3aと3bを3に、4aと4bを4に正規化する関数
     function normalize(value) {
         if (value === '0a' || value === '0b') return '0';
@@ -177,7 +200,7 @@
         if (value === '4a' || value === '4b') return '4';
         return value;
     }
-
+    
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
