@@ -17,3 +17,7 @@
 .noduplicate {
     color: black;
 }
+/* すべての要素に行間を追加 */
+body {
+    line-height: 1.5; /* 1.5倍の行間を指定 */
+}
