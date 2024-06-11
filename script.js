@@ -99,7 +99,7 @@ function updateSelection() {
                 break;
         }
         document.getElementById("resultD").innerText = resultDText;
-    };
+    }
     var allButtonsE = document.querySelectorAll('.num-set-button-E');
     allButtonsE.forEach(function(button) {
         var shape = button.innerText;
@@ -132,7 +132,7 @@ function updateSelection() {
                 break;
         }
         document.getElementById("resultE").innerText = resultEText;
-    };
+    }
     var allButtonsF = document.querySelectorAll('.num-set-button-F');
     allButtonsF.forEach(function(button) {
         var shape = button.innerText;
@@ -165,7 +165,6 @@ function updateSelection() {
                 break;
         }
         document.getElementById("resultF").innerText = resultFText;
-
 }
 
 function checkDuplicates() {
