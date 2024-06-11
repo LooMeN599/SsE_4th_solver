@@ -3,19 +3,23 @@ h2 {
     display: flex;
     align-items: center;
 }
+
 .slot {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* スロット間の余白を追加 */
+    margin-bottom: 10px;
 }
+
 .button-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-gap: 5px; /* ボタン間の余白を追加 */
+    grid-gap: 5px;
 }
+
 .result-box {
     margin-top: 10px;
 }
+
 .selected {
-    background-color: lightblue; /* 選択されたボタンの背景色 */
+    background-color: lightblue;
 }
