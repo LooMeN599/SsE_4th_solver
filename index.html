@@ -35,22 +35,22 @@
             const slotClass = button.classList[1];
             let resultText = '';
             switch (button.innerText) {
-                case '0a, 0b':
+                case '球体':
                     resultText = '(0a, 0b)';
                     break;
-                case '4a, 4b':
+                case '立方体':
                     resultText = '(4a, 4b)';
                     break;
-                case '3a, 3b':
+                case '三角錐':
                     resultText = '(3a, 3b)';
                     break;
-                case '0a, 4a':
+                case '円柱':
                     resultText = '(0a, 4a)';
                     break;
-                case '0a, 3a':
+                case '円錐':
                     resultText = '(0a, 3a)';
                     break;
-                case '3a, 3a':
+                case '三角柱':
                     resultText = '(3a, 3a)';
                     break;
             }
@@ -73,12 +73,12 @@
         // 表スロットの対応を取得する関数
         function getCorrespondingText(buttonText) {
             switch (buttonText) {
-                case '0a, 0b': return '(0a, 0b)';
-                case '4a, 4b': return '(4a, 4b)';
-                case '3a, 3b': return '(3a, 3b)';
-                case '0a, 4a': return '(0a, 4a)';
-                case '0a, 3a': return '(0a, 3a)';
-                case '3a, 3a': return '(3a, 3a)';
+                case '球体': return '(0a, 0b)';
+                case '立方体': return '(4a, 4b)';
+                case '三角錐': return '(3a, 3b)';
+                case '円柱': return '(0a, 4a)';
+                case '円錐': return '(0a, 3a)';
+                case '三角柱': return '(3a, 3a)';
                 default: return '';
             }
         }
@@ -121,8 +121,8 @@
             }
     
             const [firstLine, secondLine] = lines;
-            const firstNumbers = firstLine.match(/(\d[a-z])/g);
-            const secondNumbers = secondLine.match(/(\d[a-z])/g);
+            const firstNumbers = firstLine.match(/\d[a-z]/g);
+            const secondNumbers = secondLine.match(/\d[a-z]/g);
     
             const neededNumbers = secondNumbers.filter(num => !firstNumbers.includes(num));
             const unneededNumbers = firstNumbers.filter(num => !secondNumbers.includes(num));
@@ -148,6 +148,7 @@
             document.getElementById('result-F3').innerText = '';
         }
     </script>
+    
     
     
     <style>
@@ -204,34 +205,34 @@
         <div class="slot">
             <h2>表D1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-D">0a, 0b</button>
-                <button class="num-set-button num-set-button-D">4a, 4b</button>
-                <button class="num-set-button num-set-button-D">3a, 3b</button>
-                <button class="num-set-button num-set-button-D">0a, 4a</button>
-                <button class="num-set-button num-set-button-D">0a, 3a</button>
-                <button class="num-set-button num-set-button-D">3a, 3a</button>
+                <button class="num-set-button num-set-button-D">球体</button>
+                <button class="num-set-button num-set-button-D">立方体</button>
+                <button class="num-set-button num-set-button-D">三角錐</button>
+                <button class="num-set-button num-set-button-D">円柱</button>
+                <button class="num-set-button num-set-button-D">円錐</button>
+                <button class="num-set-button num-set-button-D">三角柱</button>
             </div>
-        </div>    
+        </div>
         <div class="slot">
             <h2>表E1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-E">0a, 0b</button>
-                <button class="num-set-button num-set-button-E">4a, 4b</button>
-                <button class="num-set-button num-set-button-E">3a, 3b</button>
-                <button class="num-set-button num-set-button-E">0a, 4a</button>
-                <button class="num-set-button num-set-button-E">0a, 3a</button>
-                <button class="num-set-button num-set-button-E">3a, 3a</button>
+                <button class="num-set-button num-set-button-E">球体</button>
+                <button class="num-set-button num-set-button-E">立方体</button>
+                <button class="num-set-button num-set-button-E">三角錐</button>
+                <button class="num-set-button num-set-button-E">円柱</button>
+                <button class="num-set-button num-set-button-E">円錐</button>
+                <button class="num-set-button num-set-button-E">三角柱</button>
             </div>
         </div>
         <div class="slot">
             <h2>表F1：</h2>
             <div class="button-grid">
-                <button class="num-set-button num-set-button-F">0a, 0b</button>
-                <button class="num-set-button num-set-button-F">4a, 4b</button>
-                <button class="num-set-button num-set-button-F">3a, 3b</button>
-                <button class="num-set-button num-set-button-F">0a, 4a</button>
-                <button class="num-set-button num-set-button-F">0a, 3a</button>
-                <button class="num-set-button num-set-button-F">3a, 3a</button>
+                <button class="num-set-button num-set-button-F">球体</button>
+                <button class="num-set-button num-set-button-F">立方体</button>
+                <button class="num-set-button num-set-button-F">三角錐</button>
+                <button class="num-set-button num-set-button-F">円柱</button>
+                <button class="num-set-button num-set-button-F">円錐</button>
+                <button class="num-set-button num-set-button-F">三角柱</button>
             </div>
         </div>
         <div class="slot">
