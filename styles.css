@@ -18,7 +18,7 @@ h2 {
 
 .num-set-button {
     font-size: 16px;
-    padding: 10px 15px; /* ボタンを少し大きくするためにパディングを追加 */
+    padding: 8px 15px; /* ボタンの縦をわずかに縮小 */
 }
 
 .selected {
@@ -26,7 +26,7 @@ h2 {
 }
 
 .slot:nth-of-type(n+4) {
-    margin-top: 20px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
+    margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
 }
 
 .hidden {
@@ -35,7 +35,7 @@ h2 {
 
 button {
     font-size: 16px;
-    padding: 10px 20px; /* 入力クリアボタンを少し大きくする */
+    padding: 8px 20px; /* 入力クリアボタンを少し大きくし、縦をわずかに縮小 */
 }
 
 .slot:nth-of-type(3) {
@@ -46,6 +46,6 @@ button {
     margin-top: 10px; /* 表D1、表E1、表F1の上下余白を追加 */
 }
 
-#result-D3, #result-E3, #result-F3 {
+.slot-reduced-height {
     line-height: 1.2; /* 表D3、表E3、表F3の高さを縮める */
 }
