@@ -11,7 +11,7 @@ h2 {
 .button-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-gap: 5px; /* ボタン間の余白を追加 */
+    grid-gap: 10px; /* ボタン間の余白を追加 */
 }
 .selected {
     background-color: lightblue; /* 選択されたボタンの背景色 */
@@ -23,14 +23,14 @@ h2 {
     color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
 }
 .extra-margin-bottom {
-    margin-bottom: 20px; /* 追加の余白を設定 */
+    margin-bottom: 10px; /* 追加の余白を設定 */
 }
 .extra-padding {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .reduced-height {
-    height: 50px; /* 高さを縮める */
+    height: 25px; /* 高さを縮める */
 }
 .clear-button {
     font-size: 16px;
