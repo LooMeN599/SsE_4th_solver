@@ -144,6 +144,34 @@
             targetElement.innerText = resultText;
         }
   
+        // 表D4を更新する関数
+        function updateResultForD4() {
+            const resultD3 = document.getElementById('result-D3').innerText;
+            const convertedText = convertText(resultD3);
+            document.getElementById('result-D4').innerText = convertedText;
+        }
+    
+        // 表E4を更新する関数
+        function updateResultForE4() {
+            const resultE3 = document.getElementById('result-E3').innerText;
+            const convertedText = convertText(resultE3);
+            document.getElementById('result-E4').innerText = convertedText;
+        }
+    
+        // 表F4を更新する関数
+        function updateResultForF4() {
+            const resultF3 = document.getElementById('result-F3').innerText;
+            const convertedText = convertText(resultF3);
+            document.getElementById('result-F4').innerText = convertedText;
+        }
+    
+        // 数字を記号に変換する関数
+        function convertText(text) {
+            return text.replace(/0[ab]/g, '●')
+                       .replace(/3[ab]/g, '▲')
+                       .replace(/4[ab]/g, '■');
+        }
+  
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
@@ -271,7 +299,18 @@
             <h2>表F3：</h2>
             <div id="result-F3"></div>
         </div>
-
+        <div class="slot">
+            <h2>表D4：</h2>
+            <div id="result-D4"></div>
+        </div>
+        <div class="slot">
+            <h2>表E4：</h2>
+            <div id="result-E4"></div>
+        </div>
+        <div class="slot">
+            <h2>表F4：</h2>
+            <div id="result-F4"></div>
+        </div>
         <button onclick="clearSelection()">入力クリア</button>
     </div>
 </body>
