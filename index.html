@@ -186,10 +186,8 @@
         .slot:nth-of-type(n+4) {
             margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
         }
-
-        /* 計算用の部分を非表示にするスタイル */
-        .calc-container {
-            display: none;
+        .hidden {
+            color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
         }
     </style>
 </head>
@@ -265,25 +263,19 @@
             <h2>表F3：</h2>
             <div id="result-F3"></div>
         </div>
-        <div class="slot">
-            <h2>計算用</h2>
-            <details>
-                <summary>クリックして表示</summary>
-                <div>
-                    <h2>表D2：</h2>
-                    <div id="result-D2"></div>
-                </div>
-                <div>
-                    <h2>表E2：</h2>
-                    <div id="result-E2"></div>
-                </div>
-                <div>
-                    <h2>表F2：</h2>
-                    <div id="result-F2"></div>
-                </div>
-            </details>
-        </div>
         <button onclick="clearSelection()">入力クリア</button>
+        <div class="slot hidden">
+            <h2>表D2：</h2>
+            <div id="result-D2"></div>
+        </div>
+        <div class="slot hidden">
+            <h2>表E2：</h2>
+            <div id="result-E2"></div>
+        </div>
+        <div class="slot hidden">
+            <h2>表F2：</h2>
+            <div id="result-F2"></div>
+        </div>
     </div>
 </body>
 </html>
