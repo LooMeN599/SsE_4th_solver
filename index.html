@@ -160,14 +160,28 @@
 
         let resultText = '';
         if (unwantedX && neededY) {
-            if (resultE3.includes(neededY)) {
+            const normalizedE3 = normalizeText(resultE3);
+            const normalizedF3 = normalizeText(resultF3);
+            if (normalizedE3.includes(neededY)) {
                 resultText = `Dで${unwantedX}を解剖し、Eで${neededY}を解剖`;
-            } else if (resultF3.includes(neededY)) {
+            } else if (normalizedF3.includes(neededY)) {
                 resultText = `Dで${unwantedX}を解剖し、Fで${neededY}を解剖`;
             }
         }
 
         document.getElementById('result-Anatomy').innerText = resultText;
+    }
+    // 0aと0bを0に、3aと3bを3に、4aと4bを4に正規化する関数
+    function normalize(value) {
+        if (value === '0a' || value === '0b') return '0';
+        if (value === '3a' || value === '3b') return '3';
+        if (value === '4a' || value === '4b') return '4';
+        return value;
+    }
+
+    // テキスト中のすべての数値を正規化する関数
+    function normalizeText(text) {
+        return text.replace(/(\d)[ab]/g, '$1');
     }
 
     // D4スロットを更新する関数
@@ -262,7 +276,7 @@
             document.getElementById('result-D4').innerText = '';
             document.getElementById('result-E4').innerText = '';
             document.getElementById('result-F4').innerText = '';
-            document.getElementById('result-Anatomy').innerText = '';
+            document.getElementById('result-PostAnatomy').innerText = ''; //
         }
     </script>
     
