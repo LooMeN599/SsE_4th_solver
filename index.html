@@ -191,9 +191,7 @@ function convertText(text) {
         .slot:nth-of-type(n+4) {
             margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
         }
-        .hidden {
-            display: none;
-        }
+
     </style>
 </head>
 <body>
@@ -256,15 +254,15 @@ function convertText(text) {
                 <button class="num-set-button num-set-button-F">三角柱</button>
             </div>
         </div>
-        <div class="slot hidden">
+        <div class="slot">
             <h2>表D2：</h2>
             <div id="result-D2"></div>
         </div>
-        <div class="slot hidden">
+        <div class="slot">
             <h2>表E2：</h2>
             <div id="result-E2"></div>
         </div>
-        <div class="slot hidden">
+        <div class="slot">
             <h2>表F2：</h2>
             <div id="result-F2"></div>
         </div>
@@ -279,18 +277,6 @@ function convertText(text) {
         <div class="slot">
             <h2>表F3：</h2>
             <div id="result-F3"></div>
-        </div>
-        <div class="slot">
-            <h2>表D4：</h2>
-            <div id="result-D4"></div>
-        </div>
-        <div class="slot">
-            <h2>表E4：</h2>
-            <div id="result-E4"></div>
-        </div>
-        <div class="slot">
-            <h2>表F4：</h2>
-            <div id="result-F4"></div>
         </div>
         <button onclick="clearSelection()">入力クリア</button>
     </div>
