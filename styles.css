@@ -3,36 +3,49 @@ h2 {
     display: flex;
     align-items: center;
 }
+
 .slot {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* スロット間の余白を追加 */
+    margin-bottom: 20px; /* スロット間の余白を追加 */
 }
+
 .button-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-gap: 10px; /* ボタン間の余白を追加 */
 }
+
+.num-set-button {
+    font-size: 16px;
+    padding: 10px 15px; /* ボタンを少し大きくするためにパディングを追加 */
+}
+
 .selected {
     background-color: lightblue; /* 選択されたボタンの背景色 */
 }
+
 .slot:nth-of-type(n+4) {
-    margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
+    margin-top: 20px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
 }
+
 .hidden {
     color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
 }
-.extra-margin-bottom {
-    margin-bottom: 10px; /* 追加の余白を設定 */
-}
-.extra-padding {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.reduced-height {
-    height: 25px; /* 高さを縮める */
-}
-.clear-button {
+
+button {
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 10px 20px; /* 入力クリアボタンを少し大きくする */
+}
+
+.slot:nth-of-type(3) {
+    margin-bottom: 30px; /* 裏Cの下の余白を拡大 */
+}
+
+.slot:nth-of-type(4), .slot:nth-of-type(5), .slot:nth-of-type(6) {
+    margin-top: 30px; /* 表D1、表E1、表F1の上下余白を追加 */
+}
+
+#result-D3, #result-E3, #result-F3 {
+    line-height: 1.2; /* 表D3、表E3、表F3の高さを縮める */
 }
