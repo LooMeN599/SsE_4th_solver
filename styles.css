@@ -1,0 +1,24 @@
+h2 {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.slot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* スロット間の余白を追加 */
+}
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 5px; /* ボタン間の余白を追加 */
+}
+.selected {
+    background-color: lightblue; /* 選択されたボタンの背景色 */
+}
+.slot:nth-of-type(n+4) {
+    margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
+}
+.hidden {
+    color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
+}
