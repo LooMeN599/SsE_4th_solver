@@ -145,19 +145,30 @@
 // 表D4を更新する関数
 function updateResultForD4() {
     const resultD3 = document.getElementById('result-D3').innerText;
-    document.getElementById('result-D4').innerText = resultD3;
+    const convertedText = convertText(resultD3);
+    document.getElementById('result-D4').innerText = convertedText;
 }
 
 // 表E4を更新する関数
 function updateResultForE4() {
     const resultE3 = document.getElementById('result-E3').innerText;
-    document.getElementById('result-E4').innerText = resultE3;
+    const convertedText = convertText(resultE3);
+    document.getElementById('result-E4').innerText = convertedText;
 }
 
 // 表F4を更新する関数
 function updateResultForF4() {
     const resultF3 = document.getElementById('result-F3').innerText;
-    document.getElementById('result-F4').innerText = resultF3;
+    const convertedText = convertText(resultF3);
+    document.getElementById('result-F4').innerText = convertedText;
+}
+
+// 数字を記号に変換する関数
+function convertText(text) {
+    if (!text) return ''; // 空の場合は空文字を返す
+    return text.replace(/0a|0b/g, '●')
+               .replace(/3a|3b/g, '▲')
+               .replace(/4a|4b/g, '■');
 }
         // 入力をクリアする関数
         function clearSelection() {
