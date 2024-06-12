@@ -1,0 +1,47 @@
+h2 {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.slot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* スロット間の余白を追加 */
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 5px; /* ボタン間の余白を追加 */
+}
+
+.num-set-button {
+    font-size: 16px;
+    padding: 5px 15px; /* ボタンの縦をわずかに縮小 */
+}
+
+.selected {
+    background-color: lightblue; /* 選択されたボタンの背景色 */
+}
+
+.slot:nth-of-type(n+4) {
+    margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
+}
+
+.hidden {
+    color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
+}
+
+button {
+    font-size: 16px;
+    padding: 5px 20px; /* 入力クリアボタンを少し大きくし、縦をわずかに縮小 */
+}
+
+.extra-padding {
+    margin-top: 10px; /* 表D1、表E1、表F1の上下余白を追加 */
+}
+
+.reduced-height {
+    line-height: 0.6; /* 表D3、表E3、表F3の高さを縮める */
+}
