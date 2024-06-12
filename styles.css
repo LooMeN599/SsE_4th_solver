@@ -22,3 +22,17 @@ h2 {
 .hidden {
     color: white; /* 表D2、表E2、表F2およびその表示内容を白文字にする */
 }
+.extra-margin-bottom {
+    margin-bottom: 20px; /* 追加の余白を設定 */
+}
+.extra-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.reduced-height {
+    height: 50px; /* 高さを縮める */
+}
+.clear-button {
+    font-size: 16px;
+    padding: 10px 20px;
+}
