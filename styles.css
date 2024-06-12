@@ -18,7 +18,7 @@ h2 {
 
 .num-set-button {
     font-size: 16px;
-    padding: 8px 15px; /* ボタンの縦をわずかに縮小 */
+    padding: 5px 15px; /* ボタンの縦をわずかに縮小 */
 }
 
 .selected {
@@ -35,17 +35,17 @@ h2 {
 
 button {
     font-size: 16px;
-    padding: 8px 20px; /* 入力クリアボタンを少し大きくし、縦をわずかに縮小 */
+    padding: 5px 20px; /* 入力クリアボタンを少し大きくし、縦をわずかに縮小 */
 }
 
-.slot:nth-of-type(3) {
+.extra-margin-bottom {
     margin-bottom: 10px; /* 裏Cの下の余白を拡大 */
 }
 
-.slot:nth-of-type(4), .slot:nth-of-type(5), .slot:nth-of-type(6) {
+.extra-padding {
     margin-top: 10px; /* 表D1、表E1、表F1の上下余白を追加 */
 }
 
-.slot-reduced-height {
-    line-height: 1.2; /* 表D3、表E3、表F3の高さを縮める */
+.reduced-height {
+    line-height: 0.6; /* 表D3、表E3、表F3の高さを縮める */
 }
