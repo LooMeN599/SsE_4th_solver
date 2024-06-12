@@ -7,13 +7,13 @@ h2 {
 .slot {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* スロット間の余白を追加 */
+    margin-bottom: 10px; /* スロット間の余白を追加 */
 }
 
 .button-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-gap: 10px; /* ボタン間の余白を追加 */
+    grid-gap: 5px; /* ボタン間の余白を追加 */
 }
 
 .num-set-button {
@@ -36,10 +36,6 @@ h2 {
 button {
     font-size: 16px;
     padding: 5px 20px; /* 入力クリアボタンを少し大きくし、縦をわずかに縮小 */
-}
-
-.extra-margin-bottom {
-    margin-bottom: 10px; /* 裏Cの下の余白を拡大 */
 }
 
 .extra-padding {
