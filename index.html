@@ -170,7 +170,6 @@ function convertText(text) {
                .replace(/3a|3b/g, '▲')
                .replace(/4a|4b/g, '■');
 }
-
         // 入力をクリアする関数
         function clearSelection() {
             document.querySelectorAll('.selected').forEach(function(button) {
@@ -211,9 +210,6 @@ function convertText(text) {
         }
         .slot:nth-of-type(n+4) {
             margin-top: 10px; /* スロット表D1、表E1、表F1の縦方向の余白を追加 */
-        }
-        #result-D2, #result-E2, #result-F2, #result-D3, #result-E3, #result-F3 {
-            display: none;
         }
     </style>
 </head>
@@ -276,30 +272,6 @@ function convertText(text) {
                 <button class="num-set-button num-set-button-F">円錐</button>
                 <button class="num-set-button num-set-button-F">三角柱</button>
             </div>
-        </div>
-        <div class="slot">
-            <h2>表D2：</h2>
-            <div id="result-D2"></div>
-        </div>
-        <div class="slot">
-            <h2>表E2：</h2>
-            <div id="result-E2"></div>
-        </div>
-        <div class="slot">
-            <h2>表F2：</h2>
-            <div id="result-F2"></div>
-        </div>
-        <div class="slot">
-            <h2>表D3：</h2>
-            <div id="result-D3"></div>
-        </div>
-        <div class="slot">
-            <h2>表E3：</h2>
-            <div id="result-E3"></div>
-        </div>
-        <div class="slot">
-            <h2>表F3：</h2>
-            <div id="result-F3"></div>
         </div>
         <div class="slot">
             <h2>表D4：</h2>
