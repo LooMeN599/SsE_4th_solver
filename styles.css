@@ -39,11 +39,11 @@ button {
 }
 
 .slot:nth-of-type(3) {
-    margin-bottom: 30px; /* 裏Cの下の余白を拡大 */
+    margin-bottom: 10px; /* 裏Cの下の余白を拡大 */
 }
 
 .slot:nth-of-type(4), .slot:nth-of-type(5), .slot:nth-of-type(6) {
-    margin-top: 30px; /* 表D1、表E1、表F1の上下余白を追加 */
+    margin-top: 10px; /* 表D1、表E1、表F1の上下余白を追加 */
 }
 
 #result-D3, #result-E3, #result-F3 {
